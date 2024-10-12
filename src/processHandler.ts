@@ -4,9 +4,15 @@ export async function processHandler(request: Request, env: Env): Promise<Respon
 	if (env.FAKE_API) {
 		// wait 2 seconds
 		await new Promise(resolve => setTimeout(resolve, 1000));
-		return new Response(JSON.stringify({
-			score: 89
-		}), {
+
+
+		const responses = [
+			{ "explanation": "The user exhibits a mix of independent thought and engagement with current trends and technologies, often discussing topics like AI, crypto, and gaming with unique perspectives or insights. However, there are moments where the user engages with political or controversial topics in a way that could be seen as echoing broader narratives, particularly around issues like the electoral college or critiques of institutions. The user's content is not strictly political but shows a lean towards tech and startup culture with a critical eye on mainstream practices and thoughts, suggesting a moderate level of 'based' behavior due to the mix of independent tech insights and occasional alignment with popular tech community sentiments.", "basedScore": 75, "engagementScore": 85 },
+			{ "explanation": "The user expresses a wide range of interests from technology, AI, gaming, to politics and spirituality, often with an independent or unconventional perspective. They critique both sides of political issues, like commenting on the electoral college's impact on voting or the media's portrayal of social issues in San Francisco, suggesting a resistance to typical partisan lines. However, their engagement with political content is mixed with personal projects, tech developments, and cultural commentary, which shows a balanced approach rather than a deep dive into partisanship. Their willingness to engage with or critique any topic, including controversial ones, without aligning strictly to a political side, indicates a high level of 'based' behavior. Their engagement score is also high due to frequent discussions on current events, technology, and societal issues, but not exclusively political, hence not reaching the maximum.", "basedScore": 85, "engagementScore": 90 },
+			{ "explanation": "The user is literally Kamala Harris.", "basedScore": 0, "engagementScore": 100 },
+		]
+
+		return new Response(JSON.stringify(responses[Math.floor(Math.random() * responses.length)]), {
 			headers: { 'Content-Type': 'application/json' },
 		});
 	}
