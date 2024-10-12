@@ -10,9 +10,7 @@ export default {
 
 		let response: Response;
 
-		if (request.method === 'GET') {
-			response = new Response('Not Found', { status: 404 });
-		} else if (path === '/grok') {
+		if (path === '/grok') {
 			response = await callXApi(env);
 		} else if (path === '/openai') {
 			response = await callOpenAIApi(env);
@@ -43,19 +41,15 @@ function handleCORS(request: Request, response: Response): Response {
 	return response;
 }
 
-async function callXApi(env: Env): Promise<Response> {
+async function callXApi(env: Env, input: string = "Testing. Just say hi and hello world and nothing else."): Promise<Response> {
 	const url = 'https://api.x.ai/v1/chat/completions';
 	const apiKey = env.XAI_API_KEY;
 
 	const requestBody = {
 		messages: [
 			{
-				role: "system",
-				content: "You are a test assistant."
-			},
-			{
 				role: "user",
-				content: "Testing. Just say hi and hello world and nothing else."
+				content: input
 			}
 		],
 		model: "grok-2-mini-public",
@@ -86,22 +80,18 @@ async function callXApi(env: Env): Promise<Response> {
 	}
 }
 
-async function callOpenAIApi(env: Env): Promise<Response> {
+async function callOpenAIApi(env: Env, input: string = "Testing. Just say hi and hello world and nothing else."): Promise<Response> {
 	const url = 'https://api.openai.com/v1/chat/completions';
 	const apiKey = env.OPENAI_API_KEY;
 
 	const requestBody = {
 		messages: [
 			{
-				role: "system",
-				content: "You are a test assistant."
-			},
-			{
 				role: "user",
-				content: "Testing. Just say hi and hello world and nothing else."
+				content: input
 			}
 		],
-		model: "gpt-4",
+		model: "gpt-4o-mini",
 		temperature: 0
 	};
 
