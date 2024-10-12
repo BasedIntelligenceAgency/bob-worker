@@ -52,7 +52,7 @@ async function callXApi(env: Env, input: string = "Testing. Just say hi and hell
 				content: input
 			}
 		],
-		model: "grok-2-mini-public",
+		model: "grok-2",
 		stream: false,
 		temperature: 0
 	};
@@ -141,6 +141,21 @@ async function processHandler(request: Request, env: Env): Promise<Response> {
 			});
 			const meData = await meResponse.json();
 			twitterUserId = (meData as any).data.id;
+		} else {
+			// If userId is provided and it's not a numeric ID, assume it's a username
+			if (isNaN(Number(twitterUserId))) {
+				const username = twitterUserId;
+				const userLookupUrl = `https://api.twitter.com/2/users/by/username/${username}`;
+
+				const userLookupResponse = await fetch(userLookupUrl, {
+					headers: {
+						'Authorization': `Bearer ${env.TWITTER_BEARER_TOKEN}`,
+					},
+				});
+
+				const userLookupData = await userLookupResponse.json();
+				twitterUserId = (userLookupData as any).data.id;
+			}
 		}
 
 		const userTimelineUrl = `https://api.twitter.com/2/users/${twitterUserId}/tweets?max_results=100&tweet.fields=created_at,author_id,conversation_id,in_reply_to_user_id&exclude=retweets,replies`;
@@ -150,6 +165,8 @@ async function processHandler(request: Request, env: Env): Promise<Response> {
 				'Authorization': `Bearer ${env.TWITTER_BEARER_TOKEN}`,
 			},
 		});
+
+		console.log("response", response)
 
 		const data = await response.json();
 		const tweets = data || [];
