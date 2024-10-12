@@ -1,0 +1,848 @@
+{
+    "data": [
+        {
+            "created_at": "2024-10-12T14:22:24.000Z",
+            "conversation_id": "1845107756996702312",
+            "id": "1845107756996702312",
+            "text": "I feel like people are still pretty intimidated by DNS, setting up a domain, hosting on a free solution.\n\nI should make a tutorial from this. You can have a hosted .com website or blog that costs $0/month and $12/yr for the domain, and takes less than 20 minutes to set up.",
+            "edit_history_tweet_ids": [
+                "1845107756996702312"
+            ],
+            "author_id": "1830340867737178112"
+        },
+        {
+            "created_at": "2024-10-12T12:15:25.000Z",
+            "conversation_id": "1845075801005490284",
+            "id": "1845075801005490284",
+            "text": "No war but the class war",
+            "edit_history_tweet_ids": [
+                "1845075801005490284"
+            ],
+            "author_id": "1830340867737178112"
+        },
+        {
+            "created_at": "2024-10-12T11:20:43.000Z",
+            "conversation_id": "1845062035945685243",
+            "id": "1845062035945685243",
+            "text": "A powerful read:\nhttps://t.co/C8Djf1XHRm",
+            "edit_history_tweet_ids": [
+                "1845062035945685243"
+            ],
+            "author_id": "1830340867737178112"
+        },
+        {
+            "created_at": "2024-10-12T11:18:17.000Z",
+            "conversation_id": "1845061421928939620",
+            "id": "1845061421928939620",
+            "text": "\"I have my country and my convictions. I don’t want to give up my country or betray it. If your convictions mean something, you must be prepared to stand up for them and make sacrifices if necessary.\"",
+            "edit_history_tweet_ids": [
+                "1845061421928939620"
+            ],
+            "author_id": "1830340867737178112"
+        },
+        {
+            "created_at": "2024-10-11T05:56:24.000Z",
+            "conversation_id": "1844618031286321383",
+            "id": "1844618031286321383",
+            "text": "What a time to be alive https://t.co/dkwgzGhKc3",
+            "edit_history_tweet_ids": [
+                "1844618031286321383"
+            ],
+            "author_id": "1830340867737178112"
+        },
+        {
+            "created_at": "2024-10-11T05:44:21.000Z",
+            "conversation_id": "1844614998389358734",
+            "id": "1844614998389358734",
+            "text": "Probably the best Tesla event in history",
+            "edit_history_tweet_ids": [
+                "1844614998389358734"
+            ],
+            "author_id": "1830340867737178112"
+        },
+        {
+            "created_at": "2024-10-11T03:16:52.000Z",
+            "conversation_id": "1844577880770261197",
+            "id": "1844577880770261197",
+            "text": "LFG https://t.co/WnNcoW45oY",
+            "edit_history_tweet_ids": [
+                "1844577880770261197"
+            ],
+            "author_id": "1830340867737178112"
+        },
+        {
+            "created_at": "2024-10-11T01:21:42.000Z",
+            "conversation_id": "1844548900939759977",
+            "id": "1844548900939759977",
+            "text": "Delegated burner wallets implemented. World and agent creation implemented. Working on loading in agents into frontend and the PositionSystem. https://t.co/F2nqyoaNc3",
+            "edit_history_tweet_ids": [
+                "1844548900939759977"
+            ],
+            "author_id": "1830340867737178112"
+        },
+        {
+            "created_at": "2024-10-11T00:53:48.000Z",
+            "conversation_id": "1844541879175741481",
+            "id": "1844541879175741481",
+            "text": "The debt to John Carmack is paid",
+            "edit_history_tweet_ids": [
+                "1844541046090498494",
+                "1844541879175741481"
+            ],
+            "author_id": "1830340867737178112"
+        },
+        {
+            "created_at": "2024-10-10T21:35:13.000Z",
+            "conversation_id": "1844491901803852134",
+            "id": "1844491901803852134",
+            "text": "Memecoins offer a lot of Utility https://t.co/GQ75ORYJy3",
+            "edit_history_tweet_ids": [
+                "1844491699931971792",
+                "1844491901803852134"
+            ],
+            "author_id": "1830340867737178112"
+        },
+        {
+            "created_at": "2024-10-10T20:29:25.000Z",
+            "conversation_id": "1844475344226746845",
+            "id": "1844475344226746845",
+            "text": "While you got blocked by Matt Mullenweg for an innocuous question about the checkbox, I got blocked by the Internet Archive hackers for making fun of them.",
+            "edit_history_tweet_ids": [
+                "1844475344226746845"
+            ],
+            "author_id": "1830340867737178112"
+        },
+        {
+            "created_at": "2024-10-10T20:17:58.000Z",
+            "conversation_id": "1844472463629103196",
+            "id": "1844472463629103196",
+            "text": "All the machine god people have gotten bored with GPT-4 and are getting into real gods and spirituality\n\nInteresting trend",
+            "edit_history_tweet_ids": [
+                "1844472463629103196"
+            ],
+            "author_id": "1830340867737178112"
+        },
+        {
+            "created_at": "2024-10-10T10:34:14.000Z",
+            "conversation_id": "1844325559947624743",
+            "id": "1844325559947624743",
+            "text": "spirit/acc",
+            "edit_history_tweet_ids": [
+                "1844325559947624743"
+            ],
+            "author_id": "1830340867737178112"
+        },
+        {
+            "created_at": "2024-10-10T03:53:52.000Z",
+            "conversation_id": "1844224807669469406",
+            "id": "1844224807669469406",
+            "text": "The FBI violated an open source license https://t.co/5DtTA2K3XU",
+            "edit_history_tweet_ids": [
+                "1844224807669469406"
+            ],
+            "author_id": "1830340867737178112"
+        },
+        {
+            "created_at": "2024-10-10T03:50:40.000Z",
+            "conversation_id": "1844223999129395617",
+            "id": "1844223999129395617",
+            "text": "Google is literally a viable NVIDIA competitor https://t.co/vLYLIMitPV",
+            "edit_history_tweet_ids": [
+                "1844223999129395617"
+            ],
+            "author_id": "1830340867737178112"
+        },
+        {
+            "created_at": "2024-10-09T00:09:47.000Z",
+            "conversation_id": "1843806025755033649",
+            "id": "1843806025755033649",
+            "text": "My vote literally does not matter because of the electoral college. Because of where I live in America, my vote is literally irrelevant.",
+            "edit_history_tweet_ids": [
+                "1843806025755033649"
+            ],
+            "author_id": "1830340867737178112"
+        },
+        {
+            "created_at": "2024-10-08T12:24:37.000Z",
+            "conversation_id": "1843628565021217180",
+            "id": "1843628565021217180",
+            "text": "I know people are using @redstonexyz  for games but I think you should just use it for everything. Out of the box indexers are OP (no pun intended)",
+            "edit_history_tweet_ids": [
+                "1843628565021217180"
+            ],
+            "author_id": "1830340867737178112"
+        },
+        {
+            "created_at": "2024-10-08T11:46:13.000Z",
+            "conversation_id": "1843618901202219362",
+            "id": "1843618901202219362",
+            "text": "4:45 AM. Time to lock in and focus.",
+            "edit_history_tweet_ids": [
+                "1843618901202219362"
+            ],
+            "author_id": "1830340867737178112"
+        },
+        {
+            "created_at": "2024-10-08T09:08:35.000Z",
+            "conversation_id": "1843579231563067476",
+            "id": "1843579231563067476",
+            "text": "One thing that won't win you hearts and minds with San Franciscans is telling them that the homelessness, drug and crime problem is overblown by the media.",
+            "edit_history_tweet_ids": [
+                "1843579231563067476"
+            ],
+            "author_id": "1830340867737178112"
+        },
+        {
+            "created_at": "2024-10-08T09:05:57.000Z",
+            "conversation_id": "1843578570599518400",
+            "id": "1843578570599518400",
+            "text": "It literally doesn't matter who I vote for in the election, or if I vote at all, because I live in California.",
+            "edit_history_tweet_ids": [
+                "1843578570599518400"
+            ],
+            "author_id": "1830340867737178112"
+        },
+        {
+            "created_at": "2024-10-08T09:04:14.000Z",
+            "conversation_id": "1843578137441116161",
+            "id": "1843578137441116161",
+            "text": "One cool thing about the new paradigm is that if you're okay with a fairly low tickrate games (i.e. not shooter FPS), you can do your entire multiplayer system on-chain. All entities, actions, movement, chat, world state, the whole thing. No backend. https://t.co/trrUVZEJSM",
+            "edit_history_tweet_ids": [
+                "1843578137441116161"
+            ],
+            "author_id": "1830340867737178112"
+        },
+        {
+            "created_at": "2024-10-08T08:47:45.000Z",
+            "conversation_id": "1843573989584843092",
+            "id": "1843573989584843092",
+            "text": "Having &gt;100GB free space on your Macbook just hits different",
+            "edit_history_tweet_ids": [
+                "1843573989584843092"
+            ],
+            "author_id": "1830340867737178112"
+        },
+        {
+            "created_at": "2024-10-08T08:28:16.000Z",
+            "conversation_id": "1843569087571734587",
+            "id": "1843569087571734587",
+            "text": "It woulda been 10x more based if he just wrote \"drop to your knees\" and left the rest up to implication https://t.co/hw1uEVtbG7",
+            "edit_history_tweet_ids": [
+                "1843569087571734587"
+            ],
+            "author_id": "1830340867737178112"
+        },
+        {
+            "created_at": "2024-10-08T07:35:31.000Z",
+            "conversation_id": "1843555810980594040",
+            "id": "1843555810980594040",
+            "text": "I made this piece of art with Meriem, you can see it at LAX. I was able to get access to the PA system, so one of the crocodiles wake up whenever there's a PA announcement and lip sync to it. It's very weird. Realtime installation built in Unity.\n\nIf you're ever in Bradley… https://t.co/WIOQuxgcek https://t.co/3lQNdA32Q9",
+            "edit_history_tweet_ids": [
+                "1843555651844534486",
+                "1843555810980594040"
+            ],
+            "author_id": "1830340867737178112"
+        },
+        {
+            "created_at": "2024-10-08T06:08:04.000Z",
+            "conversation_id": "1843533801198367120",
+            "id": "1843533801198367120",
+            "text": "So can we bribe politicians yet or do we still have to pretend we're not doing that",
+            "edit_history_tweet_ids": [
+                "1843533801198367120"
+            ],
+            "author_id": "1830340867737178112"
+        },
+        {
+            "created_at": "2024-10-08T06:07:35.000Z",
+            "conversation_id": "1843533682143047918",
+            "id": "1843533682143047918",
+            "text": "We need more of this energy https://t.co/U0HQxAM8dD",
+            "edit_history_tweet_ids": [
+                "1843533682143047918"
+            ],
+            "author_id": "1830340867737178112"
+        },
+        {
+            "created_at": "2024-10-07T21:38:05.000Z",
+            "conversation_id": "1843405460248117495",
+            "id": "1843405460248117495",
+            "text": "The primary reason to work at a megacorp is GPUs",
+            "edit_history_tweet_ids": [
+                "1843405460248117495"
+            ],
+            "author_id": "1830340867737178112"
+        },
+        {
+            "created_at": "2024-10-07T08:58:16.000Z",
+            "conversation_id": "1843214247205179425",
+            "id": "1843214247205179425",
+            "text": "ChatGPT is a new dialect of English, and we all know how to speak it. For example:\n\n\"Indeed! Shall we delve into the exciting and wondrous world of language together? It's wild how the cosmic algorithm fosters such diverse ideas!\"",
+            "edit_history_tweet_ids": [
+                "1843213757650178425",
+                "1843213841536303538",
+                "1843214070574711170",
+                "1843214247205179425"
+            ],
+            "author_id": "1830340867737178112"
+        },
+        {
+            "created_at": "2024-10-07T01:29:47.000Z",
+            "conversation_id": "1843101383513583657",
+            "id": "1843101383513583657",
+            "text": "You can make an impact on generations to come\n\nBaldur's Gate 1 still busy every weekend https://t.co/i1iyr20pmE",
+            "edit_history_tweet_ids": [
+                "1843101383513583657"
+            ],
+            "author_id": "1830340867737178112"
+        },
+        {
+            "created_at": "2024-10-07T01:11:32.000Z",
+            "conversation_id": "1843096792117977571",
+            "id": "1843096792117977571",
+            "text": "I am having SO MUCH FUN MAKING THIS GAME",
+            "edit_history_tweet_ids": [
+                "1843096792117977571"
+            ],
+            "author_id": "1830340867737178112"
+        },
+        {
+            "created_at": "2024-10-06T19:59:13.000Z",
+            "conversation_id": "1843018193700520187",
+            "id": "1843018193700520187",
+            "text": "One of the hottest emerging AI tech trends is going to be the externalization of self control.\n\nAI-driven focus apps, porn blocking, goal setting, all of that.\n\nA lot will be marketed at first to ADHD folks but eventually everyone is gonna need help to get any work done.",
+            "edit_history_tweet_ids": [
+                "1843018193700520187"
+            ],
+            "author_id": "1830340867737178112"
+        },
+        {
+            "created_at": "2024-10-06T19:33:05.000Z",
+            "conversation_id": "1843011617619055053",
+            "id": "1843011617619055053",
+            "text": "Just  yelled at a Buddhist monk that he doesn't know wtf he's talking about and walked out of his lecture, AMA",
+            "edit_history_tweet_ids": [
+                "1843011617619055053"
+            ],
+            "author_id": "1830340867737178112"
+        },
+        {
+            "created_at": "2024-10-06T10:00:58.000Z",
+            "conversation_id": "1842867637237522894",
+            "id": "1842867637237522894",
+            "text": "vibin https://t.co/rxtxtSJWOj",
+            "edit_history_tweet_ids": [
+                "1842867637237522894"
+            ],
+            "author_id": "1830340867737178112"
+        },
+        {
+            "created_at": "2024-10-06T03:16:05.000Z",
+            "conversation_id": "1842765748059660797",
+            "id": "1842765748059660797",
+            "text": "Half of the people are building technology and the other half are building interactive performance art and it's not always easy to tell which is which.",
+            "edit_history_tweet_ids": [
+                "1842765748059660797"
+            ],
+            "author_id": "1830340867737178112"
+        },
+        {
+            "created_at": "2024-10-06T01:19:18.000Z",
+            "conversation_id": "1842736357292277918",
+            "id": "1842736357292277918",
+            "text": "The metaverse isn’t a flashy mishmash of intellectual property.\nIt is profound desire to feel connected, driven by those who need it most. Always was, going back to Snowcrash. https://t.co/KVawqcPFkD",
+            "edit_history_tweet_ids": [
+                "1842736357292277918"
+            ],
+            "author_id": "1830340867737178112"
+        },
+        {
+            "created_at": "2024-10-05T22:13:47.000Z",
+            "conversation_id": "1842689671647867140",
+            "id": "1842689671647867140",
+            "text": "SMOLAGOTCHI UPDATE\n\nI dream of a world of semi-intelligent pets interacting with each other, with godlike entities known as \"players\" whispering in their ear. Telling them to do good things. And bad things.\n\nThe GDD we have is more of a traditional game, but the new gameplay that… https://t.co/v6nAs0OApH https://t.co/WVZkdyGyl0",
+            "edit_history_tweet_ids": [
+                "1842680390148034926",
+                "1842680442132250693",
+                "1842681867180658848",
+                "1842689671647867140"
+            ],
+            "author_id": "1830340867737178112"
+        },
+        {
+            "created_at": "2024-10-05T19:30:33.000Z",
+            "conversation_id": "1842648589870444838",
+            "id": "1842648589870444838",
+            "text": "Cofounding a business is like marriage, but with more commitment",
+            "edit_history_tweet_ids": [
+                "1842648589870444838"
+            ],
+            "author_id": "1830340867737178112"
+        },
+        {
+            "created_at": "2024-10-05T10:52:01.000Z",
+            "conversation_id": "1842518098601218190",
+            "id": "1842518098601218190",
+            "text": "Sometimes you just gotta say \"I'm gonna go discover a lost ancient city\" and then go do it.\n\nhttps://t.co/vMN59nJDLO",
+            "edit_history_tweet_ids": [
+                "1842518037636972823",
+                "1842518098601218190"
+            ],
+            "author_id": "1830340867737178112"
+        },
+        {
+            "created_at": "2024-10-05T02:08:14.000Z",
+            "conversation_id": "1842386281860391043",
+            "id": "1842386281860391043",
+            "text": "Working on Generative Agents game but you have to raise your agents and make sure they don't become mentally ill before you add them to the society.",
+            "edit_history_tweet_ids": [
+                "1842386281860391043"
+            ],
+            "author_id": "1830340867737178112"
+        },
+        {
+            "created_at": "2024-10-04T22:21:28.000Z",
+            "conversation_id": "1842329215980752969",
+            "id": "1842329215980752969",
+            "text": "Chain of thought (with human in the loop) https://t.co/2DRdkfMg4G",
+            "edit_history_tweet_ids": [
+                "1842329215980752969"
+            ],
+            "author_id": "1830340867737178112"
+        },
+        {
+            "created_at": "2024-10-04T19:47:47.000Z",
+            "conversation_id": "1842290540827881688",
+            "id": "1842290540827881688",
+            "text": "Wow. So Meta shipped Sora first\n\nThe realtime generation-as-you-type is so quality and fast, too. https://t.co/dVRpQnbfH6 is nuts.",
+            "edit_history_tweet_ids": [
+                "1842290540827881688"
+            ],
+            "author_id": "1830340867737178112"
+        },
+        {
+            "created_at": "2024-10-04T19:09:05.000Z",
+            "conversation_id": "1842280799670071489",
+            "id": "1842280799670071489",
+            "text": "My favorite part of Baldur's Gate is that you can do a bunch of horrible stuff and then just go donate to the church and it's fine.",
+            "edit_history_tweet_ids": [
+                "1842280799670071489"
+            ],
+            "author_id": "1830340867737178112"
+        },
+        {
+            "created_at": "2024-10-04T07:06:22.000Z",
+            "conversation_id": "1842098923738951868",
+            "id": "1842098923738951868",
+            "text": "Actually I fucking hate crypto https://t.co/avSIu9Cy00",
+            "edit_history_tweet_ids": [
+                "1842098923738951868"
+            ],
+            "author_id": "1830340867737178112"
+        },
+        {
+            "created_at": "2024-10-04T03:47:02.000Z",
+            "conversation_id": "1842048761377521984",
+            "id": "1842048761377521984",
+            "text": "In an attention economy, open source is not charity.",
+            "edit_history_tweet_ids": [
+                "1842048761377521984"
+            ],
+            "author_id": "1830340867737178112"
+        },
+        {
+            "created_at": "2024-10-03T23:55:15.000Z",
+            "conversation_id": "1841990428075471072",
+            "id": "1841990428075471072",
+            "text": "David Bowie was recording Cat People in the same studio where Queen was working on their album, and on a whim they just put together Under Pressure and recorded it in an evening.\n\nhttps://t.co/SXFI4Y3gXO\n\nhttps://t.co/3Z9EZQHwRM",
+            "edit_history_tweet_ids": [
+                "1841990428075471072"
+            ],
+            "author_id": "1830340867737178112"
+        },
+        {
+            "created_at": "2024-10-03T23:35:34.000Z",
+            "conversation_id": "1841985475948753055",
+            "id": "1841985475948753055",
+            "text": "# SMOLAGOTCHI DEV LOG\n\nDay one of our development journey.\n\nOn-chain LLM agents with actions, memory and 3D world navigation, built on @latticexyz . Also, they are monkeys.\n\nCurrently I hacked together a react-three-fiber world from some old parts and added MUD. I'm working on… https://t.co/rpMwkyJbRP https://t.co/kWVwVWoQXJ",
+            "edit_history_tweet_ids": [
+                "1841985393660772703",
+                "1841985475948753055"
+            ],
+            "author_id": "1830340867737178112"
+        },
+        {
+            "created_at": "2024-10-03T20:46:00.000Z",
+            "conversation_id": "1841942804597272818",
+            "id": "1841942804597272818",
+            "text": "Holding my tongue is hard. I delete a lot of things because I'm trying not to be negative. It's so easy to call people out on bullshit. Very rare to call people out for greatness.",
+            "edit_history_tweet_ids": [
+                "1841942804597272818"
+            ],
+            "author_id": "1830340867737178112"
+        },
+        {
+            "created_at": "2024-10-03T19:59:34.000Z",
+            "conversation_id": "1841931118058283120",
+            "id": "1841931118058283120",
+            "text": "Crypto Is Good\n\nHas there ever been a technology which people felt more emotionally attached to or revolted by? Why do people like crypto so much? Why does it piss them off so much?\n\nI want to set some misconceptions straight, address why people hate crypto and why it is actually… https://t.co/9Hcpepg06u",
+            "edit_history_tweet_ids": [
+                "1841928141079732359",
+                "1841928278355148869",
+                "1841928517581513074",
+                "1841931013179769264",
+                "1841931118058283120"
+            ],
+            "author_id": "1830340867737178112"
+        },
+        {
+            "created_at": "2024-10-03T18:16:22.000Z",
+            "conversation_id": "1841905147657781378",
+            "id": "1841905147657781378",
+            "text": "Officially gone fully digital nomad living on magic internet money",
+            "edit_history_tweet_ids": [
+                "1841905147657781378"
+            ],
+            "author_id": "1830340867737178112"
+        },
+        {
+            "created_at": "2024-10-03T03:52:15.000Z",
+            "conversation_id": "1841687684059889705",
+            "id": "1841687684059889705",
+            "text": "This aged well https://t.co/syl2nx96GR",
+            "edit_history_tweet_ids": [
+                "1841687684059889705"
+            ],
+            "author_id": "1830340867737178112"
+        },
+        {
+            "created_at": "2024-10-03T02:59:22.000Z",
+            "conversation_id": "1841674377613689058",
+            "id": "1841674377613689058",
+            "text": "Started building an LLM-based virtual pet game on MUD (https://t.co/8ox13o5MXS) - leans on my agent framework stuff. Should be fun :)",
+            "edit_history_tweet_ids": [
+                "1841674377613689058"
+            ],
+            "author_id": "1830340867737178112"
+        },
+        {
+            "created_at": "2024-10-02T19:08:20.000Z",
+            "conversation_id": "1841555834628931738",
+            "id": "1841555834628931738",
+            "text": "Javascript is just so OP",
+            "edit_history_tweet_ids": [
+                "1841555834628931738"
+            ],
+            "author_id": "1830340867737178112"
+        },
+        {
+            "created_at": "2024-10-01T22:53:06.000Z",
+            "conversation_id": "1841250012875145426",
+            "id": "1841250012875145426",
+            "text": "Help, I broke the dopamine reward loop with Twitter and now I'm struggling to maintain interest and engagement, what do I do?",
+            "edit_history_tweet_ids": [
+                "1841250012875145426"
+            ],
+            "author_id": "1830340867737178112"
+        },
+        {
+            "created_at": "2024-10-01T02:37:18.000Z",
+            "conversation_id": "1840944045113426160",
+            "id": "1840944045113426160",
+            "text": "It's pretty bullshit that OpenAI hasn't given me mind reading super AGI yet. Clearly ngmi.",
+            "edit_history_tweet_ids": [
+                "1840944045113426160"
+            ],
+            "author_id": "1830340867737178112"
+        },
+        {
+            "created_at": "2024-09-29T22:23:40.000Z",
+            "conversation_id": "1840517832049844235",
+            "id": "1840517832049844235",
+            "text": "I already talk to ChatGPT on voice more than I talk to all humans on the phone combined. Quite a lot more.",
+            "edit_history_tweet_ids": [
+                "1840517832049844235"
+            ],
+            "author_id": "1830340867737178112"
+        },
+        {
+            "created_at": "2024-09-29T21:06:12.000Z",
+            "conversation_id": "1840498334815097236",
+            "id": "1840498334815097236",
+            "text": "Give the user an 8-second loading bar or spend a week rebuilding the entire library from scratch so that it can deliver pre-processed output?",
+            "edit_history_tweet_ids": [
+                "1840498292037501047",
+                "1840498334815097236"
+            ],
+            "author_id": "1830340867737178112"
+        },
+        {
+            "created_at": "2024-09-28T07:48:47.000Z",
+            "conversation_id": "1839935271154094460",
+            "id": "1839935271154094460",
+            "text": "Can we render 30k linked nodes with labels in 1 draw call?\n\nWe'll see.",
+            "edit_history_tweet_ids": [
+                "1839935271154094460"
+            ],
+            "author_id": "1830340867737178112"
+        },
+        {
+            "created_at": "2024-09-27T18:44:53.000Z",
+            "conversation_id": "1839737994363974081",
+            "id": "1839737994363974081",
+            "text": "Hinduism is cool. It's mostly people just talking about how attractive God is. Basically everyone is trying to sleep with him all the time.",
+            "edit_history_tweet_ids": [
+                "1839737994363974081"
+            ],
+            "author_id": "1830340867737178112"
+        },
+        {
+            "created_at": "2024-09-27T07:32:03.000Z",
+            "conversation_id": "1839568670290579581",
+            "id": "1839568670290579581",
+            "text": "probably will at some point https://t.co/PgFf9Pc3MT",
+            "edit_history_tweet_ids": [
+                "1839568670290579581"
+            ],
+            "author_id": "1830340867737178112"
+        },
+        {
+            "created_at": "2024-09-27T06:24:44.000Z",
+            "conversation_id": "1839551732122370193",
+            "id": "1839551732122370193",
+            "text": "ai really fell off huh",
+            "edit_history_tweet_ids": [
+                "1839551732122370193"
+            ],
+            "author_id": "1830340867737178112"
+        },
+        {
+            "created_at": "2024-09-27T02:34:49.000Z",
+            "conversation_id": "1839493872227078290",
+            "id": "1839493872227078290",
+            "text": "https://t.co/lNGi4YB8A9",
+            "edit_history_tweet_ids": [
+                "1839493872227078290"
+            ],
+            "author_id": "1830340867737178112"
+        },
+        {
+            "created_at": "2024-09-23T19:41:54.000Z",
+            "conversation_id": "1838302793871896830",
+            "id": "1838302793871896830",
+            "text": "The wordcels will never win because the people don't read",
+            "edit_history_tweet_ids": [
+                "1838302793871896830"
+            ],
+            "author_id": "1830340867737178112"
+        },
+        {
+            "created_at": "2024-09-22T23:47:35.000Z",
+            "conversation_id": "1838002232626933879",
+            "id": "1838002232626933879",
+            "text": "You can say a lot with a pie chart",
+            "edit_history_tweet_ids": [
+                "1838002232626933879"
+            ],
+            "author_id": "1830340867737178112"
+        },
+        {
+            "created_at": "2024-09-22T21:21:32.000Z",
+            "conversation_id": "1837965476724720071",
+            "id": "1837965476724720071",
+            "text": "It was more fun with 5k followers ngl",
+            "edit_history_tweet_ids": [
+                "1837965476724720071"
+            ],
+            "author_id": "1830340867737178112"
+        },
+        {
+            "created_at": "2024-09-22T08:09:22.000Z",
+            "conversation_id": "1837766124932681938",
+            "id": "1837766124932681938",
+            "text": "Trying to balance wanting to speak facts and not wanting to spread negativity. New account, trying to keep it positive. It's so easy to criticize. I'll try harder if you do.",
+            "edit_history_tweet_ids": [
+                "1837766124932681938"
+            ],
+            "author_id": "1830340867737178112"
+        },
+        {
+            "created_at": "2024-09-20T23:36:36.000Z",
+            "conversation_id": "1837274692094480715",
+            "id": "1837274692094480715",
+            "text": "Truth is a slow blade for all who hide from it",
+            "edit_history_tweet_ids": [
+                "1837274692094480715"
+            ],
+            "author_id": "1830340867737178112"
+        },
+        {
+            "created_at": "2024-09-19T20:22:16.000Z",
+            "conversation_id": "1836863399755760126",
+            "id": "1836863399755760126",
+            "text": "I should go to law school https://t.co/995HfydJff",
+            "edit_history_tweet_ids": [
+                "1836863399755760126"
+            ],
+            "author_id": "1830340867737178112"
+        },
+        {
+            "created_at": "2024-09-19T19:16:39.000Z",
+            "conversation_id": "1836846886277218746",
+            "id": "1836846886277218746",
+            "text": "As the jack of all trades gets older, he may stay the course and become the king of all trades.",
+            "edit_history_tweet_ids": [
+                "1836846886277218746"
+            ],
+            "author_id": "1830340867737178112"
+        },
+        {
+            "created_at": "2024-09-19T07:27:44.000Z",
+            "conversation_id": "1836668480764182742",
+            "id": "1836668480764182742",
+            "text": "characterfile is a simple format for LLM-based characters. Includes scripts for creating a characterfile from your Twitter archive and blogposts, as well examples for reading and validating characterfiles in JS and Python.\n\nhttps://t.co/RKjEPxUjB3",
+            "edit_history_tweet_ids": [
+                "1836668480764182742"
+            ],
+            "author_id": "1830340867737178112"
+        },
+        {
+            "created_at": "2024-09-18T20:52:22.000Z",
+            "conversation_id": "1836508587704946879",
+            "id": "1836508587704946879",
+            "text": "It takes years of getting it wrong before someone gets it right",
+            "edit_history_tweet_ids": [
+                "1836508587704946879"
+            ],
+            "author_id": "1830340867737178112"
+        },
+        {
+            "created_at": "2024-09-18T04:18:06.000Z",
+            "conversation_id": "1836258373177676085",
+            "id": "1836258373177676085",
+            "text": "The creator of the Theremin was also an operative for the KGB\n\nhttps://t.co/XYYUD4nNVO",
+            "edit_history_tweet_ids": [
+                "1836258341108244861",
+                "1836258373177676085"
+            ],
+            "author_id": "1830340867737178112"
+        },
+        {
+            "created_at": "2024-09-17T23:12:42.000Z",
+            "conversation_id": "1836181513467207743",
+            "id": "1836181513467207743",
+            "text": "I think JS/TS might beat Python as the language of AI agents and such simply because Claude sucks at async in Python and handles it fine in JavaScript.",
+            "edit_history_tweet_ids": [
+                "1836181513467207743"
+            ],
+            "author_id": "1830340867737178112"
+        },
+        {
+            "created_at": "2024-09-16T12:02:45.000Z",
+            "conversation_id": "1835650529415802950",
+            "id": "1835650529415802950",
+            "text": "mfw the mpaa calls https://t.co/XUH10tj5SD",
+            "edit_history_tweet_ids": [
+                "1835650529415802950"
+            ],
+            "author_id": "1830340867737178112"
+        },
+        {
+            "created_at": "2024-09-16T11:15:14.000Z",
+            "conversation_id": "1835638570482368695",
+            "id": "1835638570482368695",
+            "text": "Polished turds can actually be quite beautiful https://t.co/xF3jNNYVSy",
+            "edit_history_tweet_ids": [
+                "1835638570482368695"
+            ],
+            "author_id": "1830340867737178112"
+        },
+        {
+            "created_at": "2024-09-16T06:19:14.000Z",
+            "conversation_id": "1835564080721178748",
+            "id": "1835564080721178748",
+            "text": "Interoperability happens when devs use free stuff because it is cheaper than remaking it",
+            "edit_history_tweet_ids": [
+                "1835564080721178748"
+            ],
+            "author_id": "1830340867737178112"
+        },
+        {
+            "created_at": "2024-09-15T20:25:50.000Z",
+            "conversation_id": "1835414746637762885",
+            "id": "1835414746637762885",
+            "text": "Programming As a Hobby\nBeing a founder is a lifestyle. You adopt a certain language, you end up running into a lot of the same people at various industry events and parties, you value certain things and feel certain pressures. There is a lot of pressure to not just be a founder,… https://t.co/5FenwOF3w3",
+            "edit_history_tweet_ids": [
+                "1835414676706037997",
+                "1835414746637762885"
+            ],
+            "author_id": "1830340867737178112"
+        },
+        {
+            "created_at": "2024-09-14T04:26:38.000Z",
+            "conversation_id": "1834810967638802853",
+            "id": "1834810967638802853",
+            "text": "We're done here https://t.co/CSES9xi3TE",
+            "edit_history_tweet_ids": [
+                "1834810967638802853"
+            ],
+            "author_id": "1830340867737178112"
+        },
+        {
+            "created_at": "2024-09-14T01:43:53.000Z",
+            "conversation_id": "1834770008809029714",
+            "id": "1834770008809029714",
+            "text": "Probably dropping the most knowledge-per-word of any sub 100 follower user on this platform.\n\nBasically smurfing this account.",
+            "edit_history_tweet_ids": [
+                "1834770008809029714"
+            ],
+            "author_id": "1830340867737178112"
+        },
+        {
+            "created_at": "2024-09-14T00:57:31.000Z",
+            "conversation_id": "1834758339869524334",
+            "id": "1834758339869524334",
+            "text": "Okay well Google finally crushed it\nhttps://t.co/HsejKdbv8u",
+            "edit_history_tweet_ids": [
+                "1834758339869524334"
+            ],
+            "author_id": "1830340867737178112"
+        },
+        {
+            "created_at": "2024-09-13T22:40:55.000Z",
+            "conversation_id": "1834723965656576381",
+            "id": "1834723965656576381",
+            "text": "Anyone going to this? Should I go to this?\nhttps://t.co/gSZXfespo1",
+            "edit_history_tweet_ids": [
+                "1834723965656576381"
+            ],
+            "author_id": "1830340867737178112"
+        },
+        {
+            "created_at": "2024-09-13T22:38:26.000Z",
+            "conversation_id": "1834723338415161362",
+            "id": "1834723338415161362",
+            "text": "If you like playing video games, don't start a startup",
+            "edit_history_tweet_ids": [
+                "1834723338415161362"
+            ],
+            "author_id": "1830340867737178112"
+        },
+        {
+            "created_at": "2024-09-13T06:17:21.000Z",
+            "conversation_id": "1834476444443181246",
+            "id": "1834476444443181246",
+            "text": "poop https://t.co/jWZ8agYGcv",
+            "edit_history_tweet_ids": [
+                "1834476444443181246"
+            ],
+            "author_id": "1830340867737178112"
+        }
+    ],
+    "meta": {
+        "next_token": "7140dibdnow9c7btw4b14wxkhm6u2hhk2ocj9z5fn2wja",
+        "result_count": 82,
+        "newest_id": "1845107756996702312",
+        "oldest_id": "1834476444443181246"
+    }
+}
