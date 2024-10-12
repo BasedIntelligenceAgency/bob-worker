@@ -121,7 +121,7 @@ async function callOpenAIApi(env: Env, input: string = "Testing. Just say hi and
 async function processHandler(request: Request, env: Env): Promise<Response> {
 	if (env.FAKE_API) {
 		// wait 2 seconds
-		await new Promise(resolve => setTimeout(resolve, 3000));
+		await new Promise(resolve => setTimeout(resolve, 1000));
 		return new Response(JSON.stringify({
 			score: 89
 		}), {
