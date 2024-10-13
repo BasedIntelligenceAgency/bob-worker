@@ -298,6 +298,7 @@ export default {
 	} else if (path === '/process') {
 		return await processHandler(request, env as Env);
 	} else if (path === '/') {
+		return new Response('I am alive!', { headers: handleCors(request, env).headers });
     } else {
       return new Response('Not Found', { status: 404 });
     }
