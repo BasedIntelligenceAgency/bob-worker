@@ -1,4 +1,6 @@
-import { callXApi } from "./callXApi";
+// import { callXApi } from "./callXApi";
+
+import { handleCors } from "./handleCors";
 
 export async function processHandler(request: Request, env: Env): Promise<Response> {
 	if (env.FAKE_API == "true") {
@@ -56,7 +58,7 @@ export async function processHandler(request: Request, env: Env): Promise<Respon
 
 		console.log("response", response);
 
-		const data = await response.json();
+		const data = await response.json() as { data: any[] };
 const tweets = data.data || [];
 
 // Transform tweets into the expected format
@@ -84,7 +86,7 @@ const parsedXData = await fetch("https://api.basedorbiased.com/process", {
 		const jsonData = await parsedXData.json();
 
 		return new Response(JSON.stringify(jsonData), {
-			headers: { "Content-Type": "application/json" },
+			headers: handleCors(request, env).headers,
 		});
 
 		// AI HERE

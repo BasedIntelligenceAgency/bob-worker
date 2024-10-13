@@ -1,8 +1,7 @@
 import { createHash, randomBytes } from 'crypto';
 import { createClient } from '@supabase/supabase-js';
-import { callXApi } from './callXApi';
-import { callOpenAIApi } from './callOpenAIApi';
 import { processHandler } from './processHandler';
+import { handleCors } from './handleCors';
 
 // OAuth utility functions
 function generateRandomString(length: number = 32): string {
@@ -17,31 +16,6 @@ async function generateCodeChallenge(codeVerifier: string): Promise<string> {
     .replace(/=+$/, '');
   return base64Url;
 }
-
-// CORS handler
-function handleCors(request: Request, env: Env): Response {
-	const allowedOrigins = ['http://localhost:5173', 'https://basedorbiased.com', '*'];
-	const origin = request.headers.get('Origin');
-	const corsHeaders = {
-	  'Access-Control-Allow-Origin': allowedOrigins.includes(origin!) ? origin! : allowedOrigins[0],
-	  'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
-	  'Access-Control-Allow-Headers': 'Content-Type',
-	  'Access-Control-Allow-Credentials': 'true',
-	};
-  
-	if (request.method === 'OPTIONS') {
-	  return new Response(null, {
-		headers: {
-		  ...corsHeaders,
-		  'Access-Control-Max-Age': '86400',
-		},
-	  });
-	}
-  
-	return new Response(null, {
-	  headers: corsHeaders,
-	});
-  }
 
 // Cloudflare Worker fetch handler
 export default {
@@ -291,10 +265,6 @@ export default {
       return handleOauthCallback(request, env);
     } else if (path.includes('/oauth/refresh')) {
       return handleOauthRefresh(request, env);
-	} else if (path === '/grok') {
-		return await callXApi(env);
-	} else if (path === '/openai') {
-		return await callOpenAIApi(env);
 	} else if (path === '/process') {
 		return await processHandler(request, env as Env);
 	} else if (path === '/') {
