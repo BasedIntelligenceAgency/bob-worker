@@ -57,36 +57,33 @@ export async function processHandler(request: Request, env: Env): Promise<Respon
 		console.log("response", response);
 
 		const data = await response.json();
-		const tweets = data || { data: [] };
+const tweets = data.data || [];
 
-		// data structure is this:
-		// {
-		// 	"data": [
-		// 		{
-		// 			"created_at": "2024-10-12T14:22:24.000Z",
-		// 			"conversation_id": "1845107756996702312",
-		// 			"id": "1845107756996702312",
-		// 			"text": "I feel like people are still pretty intimidated by DNS, setting up a domain, hosting on a free solution.\n\nI should make a tutorial from this. You can have a hosted .com website or blog that costs $0/month and $12/yr for the domain, and takes less than 20 minutes to set up.",
-		// 			"edit_history_tweet_ids": [
-		// 				"1845107756996702312"
-		// 			],
-		// 			"author_id": "1830340867737178112"
-		// 		},
-		// 		...
-		// 	]
-		// }
-	
-		const stringifiedTweets = (tweets as any).data.map((tweet: any) => tweet.text).join("\n");
-		console.log("stringifiedTweets", stringifiedTweets);
+// Transform tweets into the expected format
+const transformedTweets = tweets.map(tweet => ({
+  created_at: tweet.created_at,
+  conversation_id: tweet.conversation_id,
+  id: tweet.id,
+  text: tweet.text,
+  edit_history_tweet_ids: tweet.edit_history_tweet_ids,
+  author_id: tweet.author_id
+}));
 
-		const parsedXData = await fetch("https://api.basedorbiased.com/process", {
-			method: "POST",
-			body: JSON.stringify(stringifiedTweets),
-		});
+const requestBody2 = {
+  data: transformedTweets
+};
 
-		console.log("parsedXData", parsedXData);
+const parsedXData = await fetch("https://api.basedorbiased.com/process", {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json"
+  },
+  body: JSON.stringify(requestBody2)
+});
 
-		return new Response(JSON.stringify(parsedXData), {
+		const jsonData = await parsedXData.json();
+
+		return new Response(JSON.stringify(jsonData), {
 			headers: { "Content-Type": "application/json" },
 		});
 
