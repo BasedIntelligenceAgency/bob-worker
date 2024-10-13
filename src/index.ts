@@ -259,15 +259,22 @@ export default {
     const url = new URL(request.url);
     const path = url.pathname;
 
+	if (request.method === 'OPTIONS') {
+		return new Response(null, {
+		  status: 204,
+		  headers: handleCors(request, env).headers,
+		});
+	  }
+
     if (path.includes('/oauth/request_token')) {
       return handleOauthRequestToken(request, env);
     } else if (path.includes('/oauth/callback')) {
       return handleOauthCallback(request, env);
     } else if (path.includes('/oauth/refresh')) {
       return handleOauthRefresh(request, env);
-	} else if (path === '/process') {
+	} else if (path.includes('/process')) {
 		return await processHandler(request, env as Env);
-	} else if (path === '/') {
+	  } else if (path === '/') {
 		return new Response('I am alive!', { headers: handleCors(request, env).headers });
     } else {
       return new Response('Not Found', { status: 404 });

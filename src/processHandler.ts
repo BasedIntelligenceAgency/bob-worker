@@ -3,6 +3,16 @@
 import { handleCors } from "./handleCors";
 
 export async function processHandler(request: Request, env: Env): Promise<Response> {
+	console.log("request");
+
+	if (request.method !== 'POST') {
+		return new Response('Method Not Allowed', {
+			status: 405,
+			headers: handleCors(request, env).headers,
+		});
+	}
+	console.log("method of request:", request.method)
+
 	if (env.FAKE_API == "true") {
 		// wait 2 seconds
 		await new Promise(resolve => setTimeout(resolve, 1000));
@@ -19,6 +29,7 @@ export async function processHandler(request: Request, env: Env): Promise<Respon
 		});
 	}
 	try {
+		console.log("request", request);
 		const requestBody = await request.json() as { userId: string; };
 		let twitterUserId = requestBody.userId;
 
@@ -59,113 +70,125 @@ export async function processHandler(request: Request, env: Env): Promise<Respon
 		console.log("response", response);
 
 		const data = await response.json() as { data: any[] };
-const tweets = data.data || [];
+		const tweets = data.data || [];
 
-// Transform tweets into the expected format
-const transformedTweets = tweets.map(tweet => ({
-  created_at: tweet.created_at,
-  conversation_id: tweet.conversation_id,
-  id: tweet.id,
-  text: tweet.text,
-  edit_history_tweet_ids: tweet.edit_history_tweet_ids,
-  author_id: tweet.author_id
-}));
+		// Transform tweets into the expected format
+		const transformedTweets = tweets.map(tweet => ({
+			created_at: tweet.created_at,
+			conversation_id: tweet.conversation_id,
+			id: tweet.id,
+			text: tweet.text,
+			edit_history_tweet_ids: tweet.edit_history_tweet_ids,
+			author_id: tweet.author_id
+		}));
 
-const requestBody2 = {
-  data: transformedTweets
-};
+		const requestBody2 = {
+			data: transformedTweets
+		};
 
-const parsedXData = await fetch("https://api.basedorbiased.com/process", {
-  method: "POST",
-  headers: {
-    "Content-Type": "application/json"
-  },
-  body: JSON.stringify(requestBody2)
-});
+		const parsedXData = await fetch("https://api.basedorbiased.com/process", {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json"
+			},
+			body: JSON.stringify(requestBody2)
+		});
+
+		console.log("parsedXData", parsedXData);
 
 		const jsonData = await parsedXData.json();
 
+		console.log("jsonData", jsonData);
+
+		console.log("Sending response");
+
 		return new Response(JSON.stringify(jsonData), {
-			headers: handleCors(request, env).headers,
+			headers: handleCors(request, env).headers
 		});
+
 
 		// AI HERE
 
-// 		const prompt =
-// 			`${stringifiedTweets}
+		// 		const prompt =
+		// 			`${stringifiedTweets}
 
-// Determine if the user is based or biased. Specifically, based means that they express opinions which are not towing either side of the political spectrum and have independent thoughts separate from their political party.
-// Biased means that they are expressing opinions which are towing either side of the political spectrum and are not independent.
-// Give a score from 0 to 100 based on how based or biased the user is. A score of 0 indicates very biased and a score of 100 indicates very based.
-// Also give an "engagement" score from 0 to 100. A score of 0 indicates the user never says anything political or interesting and a score of 100 indicates the user is very engaged in social issues, politics and current events.
-// Do not award points for being political or not. Generally, just ignore the non-political content. We are interested in how much NPC-like behavior the user exhibits-- how much they repeat talking points and echo the mainstream narrative.
+		// Determine if the user is based or biased. Specifically, based means that they express opinions which are not towing either side of the political spectrum and have independent thoughts separate from their political party.
+		// Biased means that they are expressing opinions which are towing either side of the political spectrum and are not independent.
+		// Give a score from 0 to 100 based on how based or biased the user is. A score of 0 indicates very biased and a score of 100 indicates very based.
+		// Also give an "engagement" score from 0 to 100. A score of 0 indicates the user never says anything political or interesting and a score of 100 indicates the user is very engaged in social issues, politics and current events.
+		// Do not award points for being political or not. Generally, just ignore the non-political content. We are interested in how much NPC-like behavior the user exhibits-- how much they repeat talking points and echo the mainstream narrative.
 
-// Your response should be in JSON block format with the following keys: 'explanation', 'basedScore', 'engagementScore', for example:
-// \`\`\`json
-// {
-// 	"explanation": "The user is very based/biased because <good reasons>.",
-// 	"basedScore": <0-100>,
-// 	"engagementScore": <0-100>
-// }
-// \`\`\``;
+		// Your response should be in JSON block format with the following keys: 'explanation', 'basedScore', 'engagementScore', for example:
+		// \`\`\`json
+		// {
+		// 	"explanation": "The user is very based/biased because <good reasons>.",
+		// 	"basedScore": <0-100>,
+		// 	"engagementScore": <0-100>
+		// }
+		// \`\`\``;
 
-// 		const xResponse = await callXApi(env, prompt);
-// 		const xData = await xResponse.json();
-// 		console.log("xData", xData);
+		// 		const xResponse = await callXApi(env, prompt);
+		// 		const xData = await xResponse.json();
+		// 		console.log("xData", xData);
 
-// 		// parse the xData
-// 		const content = (xData as any)?.choices[0]?.message?.content || "";
-// 		console.log("content", content);
+		// 		// parse the xData
+		// 		const content = (xData as any)?.choices[0]?.message?.content || "";
+		// 		console.log("content", content);
 
-// 		let parsedXData = null;
-// 		let retryCount = 0;
+		// 		let parsedXData = null;
+		// 		let retryCount = 0;
 
-// 		while (parsedXData === null && retryCount < 5) {
-// 			try {
-// 				// find the JSON block
-// 				let jsonStart = content.indexOf("```json");
-// 				let jsonEnd = content.indexOf("```", jsonStart + 1);
+		// 		while (parsedXData === null && retryCount < 5) {
+		// 			try {
+		// 				// find the JSON block
+		// 				let jsonStart = content.indexOf("```json");
+		// 				let jsonEnd = content.indexOf("```", jsonStart + 1);
 
-// 				// if they don't exist, find the first { and last }
-// 				if (jsonStart === -1 || jsonEnd === -1) {
-// 					jsonStart = content.indexOf("{");
-// 					jsonEnd = content.lastIndexOf("}") + 1;
-// 				} else {
-// 					jsonStart += "```json".length;
-// 				}
+		// 				// if they don't exist, find the first { and last }
+		// 				if (jsonStart === -1 || jsonEnd === -1) {
+		// 					jsonStart = content.indexOf("{");
+		// 					jsonEnd = content.lastIndexOf("}") + 1;
+		// 				} else {
+		// 					jsonStart += "```json".length;
+		// 				}
 
-// 				const jsonBlock = content.substring(jsonStart, jsonEnd).trim();
-// 				console.log("jsonBlock", jsonBlock);
-// 				parsedXData = JSON.parse(jsonBlock);
-// 				console.log("parsedXData", parsedXData);
-// 			} catch (err) {
-// 				console.error(`Parsing attempt ${retryCount + 1} failed:`, err);
-// 				retryCount++;
-// 			}
-// 		}
+		// 				const jsonBlock = content.substring(jsonStart, jsonEnd).trim();
+		// 				console.log("jsonBlock", jsonBlock);
+		// 				parsedXData = JSON.parse(jsonBlock);
+		// 				console.log("parsedXData", parsedXData);
+		// 			} catch (err) {
+		// 				console.error(`Parsing attempt ${retryCount + 1} failed:`, err);
+		// 				retryCount++;
+		// 			}
+		// 		}
 
-// 		if (parsedXData === null) {
-// 			return new Response(
-// 				JSON.stringify({ error: "Failed to parse AI response after 5 attempts" }),
-// 				{ status: 500, headers: { "Content-Type": "application/json" } }
-// 			);
-// 		}
+		// 		if (parsedXData === null) {
+		// 			return new Response(
+		// 				JSON.stringify({ error: "Failed to parse AI response after 5 attempts" }),
+		// 				{ status: 500, headers: { "Content-Type": "application/json" } }
+		// 			);
+		// 		}
 
-// 		if (!parsedXData.basedScore || !parsedXData.engagementScore) {
-// 			return new Response(
-// 				JSON.stringify({ error: "Invalid response from AI" }),
-// 				{ headers: { "Content-Type": "application/json" } }
-// 			);
-// 		}
+		// 		if (!parsedXData.basedScore || !parsedXData.engagementScore) {
+		// 			return new Response(
+		// 				JSON.stringify({ error: "Invalid response from AI" }),
+		// 				{ headers: { "Content-Type": "application/json" } }
+		// 			);
+		// 		}
 
-// 		return new Response(JSON.stringify(parsedXData), {
-// 			headers: { "Content-Type": "application/json" },
-// 		});
+		// 		return new Response(JSON.stringify(parsedXData), {
+		// 			headers: { "Content-Type": "application/json" },
+		// 		});
 	} catch (err) {
 		console.error(err);
 		return new Response(
-			JSON.stringify({ error: err instanceof Error ? err.message : "An unknown error occurred" }),
-			{ status: 500, headers: { 'Content-Type': 'application/json' } }
-		);
+		  JSON.stringify({ error: err instanceof Error ? err.message : "An unknown error occurred" }),
+		  {
+			status: 500,
+			headers: {
+			  'Content-Type': 'application/json',
+			  ...handleCors(request, env).headers,
+			},
+		});
 	}
 }
