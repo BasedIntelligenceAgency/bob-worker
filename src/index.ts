@@ -1,5 +1,8 @@
 import { createHash, randomBytes } from 'crypto';
 import { createClient } from '@supabase/supabase-js';
+import { callXApi } from './callXApi';
+import { callOpenAIApi } from './callOpenAIApi';
+import { processHandler } from './processHandler';
 
 // OAuth utility functions
 function generateRandomString(length: number = 32): string {
@@ -42,7 +45,7 @@ function handleCors(request: Request, env: Env): Response {
 
 // Cloudflare Worker fetch handler
 export default {
-  async fetch(request: Request, env: Env, ctx: ExecutionContext): Promise<Response> {
+  async fetch(request: Request, env: Env, ctx: ExecutionContext) {
     const supabase = createClient(env.SUPABASE_URL, env.SUPABASE_KEY);
 
     // OAuth state storage
@@ -194,7 +197,7 @@ export default {
 			});
 		  }
 	  
-		  const data = await response.json();
+		  const data = await response.json() as { access_token: string, refresh_token: string, expires_in: number };
 		  console.log('Token response:', data);
 	  
 		  const accessToken = data.access_token;
@@ -260,7 +263,7 @@ export default {
           return new Response(`Error refreshing access token: ${errorText}`, { status: 500 });
         }
 
-        const data = await response.json();
+        const data = await response.json() as { access_token: string, refresh_token: string, expires_in: number };
         const newAccessToken = data.access_token;
         const newRefreshToken = data.refresh_token;
         const expiresIn = data.expires_in;
@@ -288,6 +291,13 @@ export default {
       return handleOauthCallback(request, env);
     } else if (path.includes('/oauth/refresh')) {
       return handleOauthRefresh(request, env);
+	} else if (path === '/grok') {
+		return await callXApi(env);
+	} else if (path === '/openai') {
+		return await callOpenAIApi(env);
+	} else if (path === '/process') {
+		return await processHandler(request, env as Env);
+	} else if (path === '/') {
     } else {
       return new Response('Not Found', { status: 404 });
     }
