@@ -13,5 +13,9 @@ interface Env {
   TWITTER_ACCESS_TOKEN: string;
   TWITTER_ACCESS_SECRET: string;
   TWITTER_BEARER_TOKEN: string;
-  FAKE_API: boolean;
+  FAKE_API: string;
+  TWITTER_CLIENT_ID: string;
+  FRONTEND_URL: string;
+  TWITTER_CONSUMER_SECRET: string;
+  TWITTER_CLIENT_SECRET: string;
 }
