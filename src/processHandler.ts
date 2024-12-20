@@ -109,7 +109,23 @@ async function analyzeWithGrok(tweets: string, username: string, env: Env): Prom
 		throw new Error('XAI_API_KEY environment variable is not set');
 	}
 
-	const prompt = `Analyze these tweets from user ${username}:\n\n${tweets}\n\nProvide a tribal affiliation analysis and a based score (0-100) with explanation.`;
+	const prompt = `You are a based detector analyzing tweets. Your task is to determine how based or bluepilled a user is based on their tweets.
+
+Given these tweets from @${username}:
+
+${tweets}
+
+Provide a concise but engaging analysis in this format:
+1. Tribe: [One short phrase describing their ideological tribe]
+2. Based Score: [0-100]
+3. Explanation: [2-3 sentences explaining why they belong to this tribe and got this score. Be witty and fun but not mean.]
+
+Remember:
+- High based scores (70-100) are for independent thinkers and chads
+- Medium scores (40-69) are for normies and NPCs
+- Low scores (0-39) are for the hopelessly bluepilled
+
+Keep the explanation fun and memey but not cruel. Focus on their ideas, not personal attacks.`;
 
 	console.log("Sending request to OpenRouter...");
 	const response = await fetch("https://openrouter.ai/api/v1/chat/completions", {
@@ -123,7 +139,7 @@ async function analyzeWithGrok(tweets: string, username: string, env: Env): Prom
 		body: JSON.stringify({
 			model: "x-ai/grok-2-1212",
 			messages: [{ role: "user", content: prompt }],
-			temperature: 0
+			temperature: 0.7 // Add some randomness for more fun responses
 		})
 	});
 
@@ -143,14 +159,26 @@ async function analyzeWithGrok(tweets: string, username: string, env: Env): Prom
 	}
 
 	const analysis = data.choices[0].message.content;
+	console.log("Raw analysis:", analysis);
 
-	// Extract tribe and score
-	const tribeMatch = analysis.match(/tribe[:\s]+([^\.|\n]+)/i);
-	const scoreMatch = analysis.match(/based score[:\s]+(\d+)/i);
+	// Extract tribe, score, and explanation using regex
+	const tribeMatch = analysis.match(/Tribe:\s*([^\n]+)/i);
+	const scoreMatch = analysis.match(/Based Score:\s*(\d+)/i);
+	const explanationMatch = analysis.match(/Explanation:\s*([^\n]+(?:\n[^\n]+)*)/i);
+
+	if (!tribeMatch || !scoreMatch || !explanationMatch) {
+		console.error("Failed to parse analysis:", {
+			analysis,
+			tribeMatch,
+			scoreMatch,
+			explanationMatch
+		});
+		throw new Error('Failed to parse Grok response');
+	}
 
 	return {
-		tribe: tribeMatch ? tribeMatch[1].trim() : 'Free Thinker',
-		score: scoreMatch ? Math.min(100, Math.max(0, parseInt(scoreMatch[1]))) : 69,
-		explanation: analysis
+		tribe: tribeMatch[1].trim(),
+		score: Math.min(100, Math.max(0, parseInt(scoreMatch[1]))),
+		explanation: explanationMatch[1].trim()
 	};
 }
