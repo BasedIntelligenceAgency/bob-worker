@@ -612,6 +612,10 @@ export interface Env {
 	SUPABASE_KEY: string;
 	TWITTER_BEARER_TOKEN: string;
 	TWITTER_CLIENT_ID: string;
+	TWITTER_API_KEY: string;
+	TWITTER_API_SECRET: string;
+	TWITTER_ACCESS_TOKEN_SECRET: string;
+	TWITTER_ACCESS_TOKEN: string;
 	FRONTEND_URL: string;
 	FAKE_API: boolean;
 	GROK_API_KEY: string;
@@ -725,7 +729,7 @@ export default {
 				response_type: 'code',
 				client_id: clientId,
 				redirect_uri: redirectUri,
-				scope: 'tweet.read users.read follows.read offline.access',
+				scope: 'tweet.read users.read tweet.write follows.read offline.access media.write',
 				state: state,
 				code_challenge: codeChallenge,
 				code_challenge_method: 'S256',
@@ -927,6 +931,8 @@ export default {
 				return await handleOauthRefresh(request, env);
 			} else if (path.includes('/process')) {
 				return await processHandler(request, env);
+			} else if (path.includes('/tweet')) {
+				return await handleTweet(request, env);
 			} else if (path === '/') {
 				return new Response('API is operational', {
 					headers: {
@@ -960,3 +966,297 @@ export default {
 		}
 	},
 };
+async function handleTweet(request: Request, env: Env): Promise<Response> {
+	const corsHeaders = {
+	  'Access-Control-Allow-Origin': request.headers.get('Origin') || 'http://localhost:5173',
+	  'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
+	  'Access-Control-Allow-Headers': 'Content-Type, Authorization, X-Requested-With',
+	  'Access-Control-Allow-Credentials': 'true',
+	};
+  
+	try {
+	  // Handle media upload
+	  if (request.headers.get('Content-Type')?.includes('multipart/form-data')) {
+		const formData = await request.formData();
+		const mediaFile = formData.get('media') as File;
+  
+		if (!mediaFile) {
+		  throw new Error('Missing required field: media');
+		}
+  
+		console.log('Media file type:', mediaFile.type);
+		console.log('Media file size:', mediaFile.size);
+  
+		const mediaBuffer = await mediaFile.arrayBuffer();
+		const mediaBytes = new Uint8Array(mediaBuffer);
+		console.log('Raw bytes length:', mediaBytes.length);
+  
+		// Convert to base64
+		const mediaBase64 = btoa(String.fromCharCode(...mediaBytes));
+		console.log('Base64 length:', mediaBase64.length);
+  
+		const timestamp = Math.floor((Date.now() - 43200000) / 1000).toString();
+		console.log('Using timestamp:', timestamp);
+  
+		const oauthParams = {
+		  oauth_consumer_key: env.TWITTER_API_KEY,
+		  oauth_nonce: randomBytes(32).toString('base64').replace(/[^a-zA-Z0-9]/g, ''),
+		  oauth_signature_method: 'HMAC-SHA1',
+		  oauth_timestamp: timestamp,
+		  oauth_token: env.TWITTER_ACCESS_TOKEN,
+		  oauth_version: '1.0'
+		};
+  
+		// INIT with raw byte length
+		const initParams = {
+		  command: 'INIT',
+		  total_bytes: mediaBytes.length.toString(),
+		  media_type: 'image/png'
+		};
+  
+		console.log('INIT params:', initParams);
+  
+		const initSignature = await generateOAuth1Signature(
+		  'POST',
+		  'https://upload.twitter.com/1.1/media/upload.json',
+		  { ...oauthParams, ...initParams },
+		  env.TWITTER_API_SECRET,
+		  env.TWITTER_ACCESS_TOKEN_SECRET
+		);
+  
+		const initHeader = generateAuthHeader(oauthParams, initSignature);
+  
+		console.log('Making INIT request...');
+		const initBody = new URLSearchParams(initParams);
+		const initResponse = await fetch('https://upload.twitter.com/1.1/media/upload.json', {
+		  method: 'POST',
+		  headers: {
+			'Authorization': initHeader,
+			'Content-Type': 'application/x-www-form-urlencoded'
+		  },
+		  body: initBody
+		});
+  
+		const initResponseText = await initResponse.text();
+		console.log('INIT response:', initResponseText);
+  
+		if (!initResponse.ok) {
+		  console.error('INIT failed:', initResponseText);
+		  throw new Error(`INIT failed: ${initResponseText}`);
+		}
+  
+		const initData = JSON.parse(initResponseText);
+		const mediaId = initData.media_id_string;
+		console.log('Got media ID:', mediaId);
+  
+		// APPEND (single segment for smaller files)
+		const appendParams = {
+		  command: 'APPEND',
+		  media_id: mediaId,
+		  segment_index: '0',
+		  media_data: mediaBase64
+		};
+  
+		const appendSignature = await generateOAuth1Signature(
+		  'POST',
+		  'https://upload.twitter.com/1.1/media/upload.json',
+		  { ...oauthParams, ...appendParams },
+		  env.TWITTER_API_SECRET,
+		  env.TWITTER_ACCESS_TOKEN_SECRET
+		);
+  
+		const appendHeader = generateAuthHeader(oauthParams, appendSignature);
+  
+		console.log('Uploading data...');
+		const appendBody = new URLSearchParams(appendParams);
+		const appendResponse = await fetch('https://upload.twitter.com/1.1/media/upload.json', {
+		  method: 'POST',
+		  headers: {
+			'Authorization': appendHeader,
+			'Content-Type': 'application/x-www-form-urlencoded'
+		  },
+		  body: appendBody
+		});
+  
+		const appendResponseText = await appendResponse.text();
+		console.log('APPEND response:', appendResponseText);
+  
+		if (!appendResponse.ok) {
+		  console.error('APPEND failed:', appendResponseText);
+		  throw new Error(`APPEND failed: ${appendResponseText}`);
+		}
+  
+		// FINALIZE
+		const finalizeParams = {
+		  command: 'FINALIZE',
+		  media_id: mediaId
+		};
+  
+		const finalizeSignature = await generateOAuth1Signature(
+		  'POST',
+		  'https://upload.twitter.com/1.1/media/upload.json',
+		  { ...oauthParams, ...finalizeParams },
+		  env.TWITTER_API_SECRET,
+		  env.TWITTER_ACCESS_TOKEN_SECRET
+		);
+  
+		const finalizeHeader = generateAuthHeader(oauthParams, finalizeSignature);
+  
+		console.log('Finalizing upload...');
+		const finalizeBody = new URLSearchParams(finalizeParams);
+		const finalizeResponse = await fetch('https://upload.twitter.com/1.1/media/upload.json', {
+		  method: 'POST',
+		  headers: {
+			'Authorization': finalizeHeader,
+			'Content-Type': 'application/x-www-form-urlencoded'
+		  },
+		  body: finalizeBody
+		});
+  
+		const finalizeResponseText = await finalizeResponse.text();
+		console.log('FINALIZE response:', finalizeResponseText);
+  
+		if (!finalizeResponse.ok) {
+		  console.error('FINALIZE failed:', finalizeResponseText);
+		  throw new Error(`FINALIZE failed: ${finalizeResponseText}`);
+		}
+  
+		const finalizeData = JSON.parse(finalizeResponseText);
+		console.log('Upload completed:', finalizeData);
+  
+		return new Response(JSON.stringify({
+		  success: true,
+		  mediaId
+		}), {
+		  headers: {
+			'Content-Type': 'application/json',
+			...corsHeaders
+		  }
+		});
+	  }
+  
+	  // Handle tweet creation
+	  if (request.headers.get('Content-Type')?.includes('application/json')) {
+		const { text, mediaId } = await request.json() as { text: string, mediaId: string };
+  
+		const timestamp = Math.floor((Date.now() - 43200000) / 1000).toString();
+		const oauthParams = {
+		  oauth_consumer_key: env.TWITTER_API_KEY,
+		  oauth_nonce: randomBytes(32).toString('base64').replace(/[^a-zA-Z0-9]/g, ''),
+		  oauth_signature_method: 'HMAC-SHA1',
+		  oauth_timestamp: timestamp,
+		  oauth_token: env.TWITTER_ACCESS_TOKEN,
+		  oauth_version: '1.0'
+		};
+  
+		const tweetParams = {
+		  text: text,
+		  ...(mediaId ? { media: { media_ids: [mediaId] } } : {})
+		};
+  
+		const signature = await generateOAuth1Signature(
+		  'POST',
+		  'https://api.twitter.com/2/tweets',
+		  { ...oauthParams },
+		  env.TWITTER_API_SECRET,
+		  env.TWITTER_ACCESS_TOKEN_SECRET
+		);
+  
+		const authHeader = generateAuthHeader(oauthParams, signature);
+  
+		const tweetResponse = await fetch('https://api.twitter.com/2/tweets', {
+		  method: 'POST',
+		  headers: {
+			'Authorization': authHeader,
+			'Content-Type': 'application/json'
+		  },
+		  body: JSON.stringify(tweetParams)
+		});
+  
+		if (!tweetResponse.ok) {
+		  const errorText = await tweetResponse.text();
+		  console.error('Tweet creation failed:', errorText);
+		  throw new Error(`Failed to create tweet: ${errorText}`);
+		}
+  
+		const responseData = await tweetResponse.json();
+		console.log('Tweet posted:', responseData);
+  
+		return new Response(JSON.stringify({
+		  success: true,
+		  tweet: responseData
+		}), {
+		  headers: {
+			'Content-Type': 'application/json',
+			...corsHeaders
+		  }
+		});
+	  }
+  
+	  throw new Error('Invalid request type');
+  
+	} catch (error) {
+	  console.error('Error in tweet handler:', error);
+	  return new Response(
+		JSON.stringify({
+		  error: error instanceof Error ? error.message : 'Failed to handle tweet request',
+		  details: error instanceof Error ? error.stack : undefined
+		}),
+		{
+		  status: 500,
+		  headers: { 'Content-Type': 'application/json', ...corsHeaders }
+		}
+	  );
+	}
+  }
+
+  // Helper functions remain the same
+  function generateAuthHeader(oauthParams: Record<string, string>, signature: string): string {
+	return 'OAuth ' + Object.entries({
+	  ...oauthParams,
+	  oauth_signature: signature
+	})
+	  .map(([key, value]) => `${encodeURIComponent(key)}="${encodeURIComponent(value)}"`)
+	  .join(', ');
+  }
+  
+  function encodeRFC3986(str: string): string {
+	return encodeURIComponent(str)
+	  .replace(/[!'()*]/g, (c) => `%${c.charCodeAt(0).toString(16).toUpperCase()}`)
+	  .replace(/\%20/g, '+');
+  }
+  
+  async function generateOAuth1Signature(
+	method: string,
+	url: string,
+	params: Record<string, string>,
+	consumerSecret: string,
+	tokenSecret: string
+  ): Promise<string> {
+	const paramString = Object.entries(params)
+	  .sort(([a], [b]) => a.localeCompare(b))
+	  .map(([key, value]) => `${encodeRFC3986(key)}=${encodeRFC3986(value)}`)
+	  .join('&');
+  
+	const signatureBase = [
+	  method.toUpperCase(),
+	  encodeRFC3986(url),
+	  encodeRFC3986(paramString)
+	].join('&');
+  
+	const signingKey = `${encodeRFC3986(consumerSecret)}&${encodeRFC3986(tokenSecret)}`;
+  
+	const signature = await crypto.subtle.importKey(
+	  'raw',
+	  new TextEncoder().encode(signingKey),
+	  { name: 'HMAC', hash: 'SHA-1' },
+	  false,
+	  ['sign']
+	).then(key => crypto.subtle.sign(
+	  'HMAC',
+	  key,
+	  new TextEncoder().encode(signatureBase)
+	));
+  
+	return btoa(String.fromCharCode(...new Uint8Array(signature)));
+  }
