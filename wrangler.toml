@@ -15,6 +15,6 @@ SUPABASE_URL = "https://ypswcnhnviqsfrxzvmqx.supabase.co"
 SUPABASE_KEY = "your-supabase-key"
 TWITTER_CLIENT_ID = "SkpzYU1IZE5XY1ZhYzZST194MFE6MTpjaQ"
 FRONTEND_URL = "http://localhost:5173"
-FAKE_API = "false"
+FAKE_API = false
 GROK_API_KEY = "your-grok-key"
 GROK_BASE_URL = "https://your-grok-endpoint/v1"
