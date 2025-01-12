@@ -2,6 +2,8 @@ import { createHash, randomBytes } from 'crypto';
 import { createClient as createSupabaseClient } from '@supabase/supabase-js';
 import createInstructorClient from '@instructor-ai/instructor';
 import { z } from 'zod';
+import { IdeologyClassifier } from './services/IdeologyClassifier';
+import categoriesData from './data/categories.json';
 
 /**
  * ------------------------------------------------------------------
@@ -232,7 +234,7 @@ async function getBasedScore(twitterMessages: TwitterMessage[], env: Env): Promi
 		.join('\n\n');
 
 	const prompt = `
-SYSTEM: You are an expert at analyzing social media posts to determine political and social beliefs. 
+SYSTEM: You are an expert at analyzing social media posts to determine political and social beliefs.
 Analyze the following tweets carefully and provide a detailed assessment.
 
 USER MESSAGES:
@@ -305,81 +307,81 @@ export function handleCors(request: Request, env: Env): Response {
 }
 
 async function fetchUserTweets(userId: string, accessToken: string): Promise<TwitterMessage[]> {
-  const userTimelineUrl = `https://api.twitter.com/2/users/${userId}/tweets?max_results=100&tweet.fields=created_at,author_id,conversation_id,in_reply_to_user_id&exclude=retweets,replies`;
+	const userTimelineUrl = `https://api.twitter.com/2/users/${userId}/tweets?max_results=100&tweet.fields=created_at,author_id,conversation_id,in_reply_to_user_id&exclude=retweets,replies`;
 
-  const twitterResponse = await fetch(userTimelineUrl, {
-    headers: {
-      'Authorization': `Bearer ${accessToken}` // Using user's access token
-    }
-  });
+	const twitterResponse = await fetch(userTimelineUrl, {
+		headers: {
+			Authorization: `Bearer ${accessToken}`, // Using user's access token
+		},
+	});
 
-  if (!twitterResponse.ok) {
-    throw new TwitterAPIError(`Failed to fetch tweets: ${await twitterResponse.text()}`);
-  }
+	if (!twitterResponse.ok) {
+		throw new TwitterAPIError(`Failed to fetch tweets: ${await twitterResponse.text()}`);
+	}
 
-  const timelineData = await twitterResponse.json() as { data: TwitterMessage[] };
-  const tweets = timelineData.data || [];
+	const timelineData = (await twitterResponse.json()) as { data: TwitterMessage[] };
+	const tweets = timelineData.data || [];
 
-  if (tweets.length === 0) {
-    throw new TwitterAPIError('No tweets found');
-  }
+	if (tweets.length === 0) {
+		throw new TwitterAPIError('No tweets found');
+	}
 
-  return tweets.map((tweet) => ({
-    created_at: tweet.created_at,
-    conversation_id: tweet.conversation_id,
-    id: tweet.id,
-    text: tweet.text,
-    edit_history_tweet_ids: tweet.edit_history_tweet_ids || [],
-    author_id: tweet.author_id,
-  }));
+	return tweets.map((tweet) => ({
+		created_at: tweet.created_at,
+		conversation_id: tweet.conversation_id,
+		id: tweet.id,
+		text: tweet.text,
+		edit_history_tweet_ids: tweet.edit_history_tweet_ids || [],
+		author_id: tweet.author_id,
+	}));
 }
 
 async function fetchTwitterUser(userId: string, accessToken: string): Promise<string> {
-  console.log("Fetching user info for:", userId);
-  
-  // If no userId provided, get the authenticated user
-  if (!userId) {
-    const meResponse = await fetch('https://api.twitter.com/2/users/me', {
-      headers: {
-        'Authorization': `Bearer ${accessToken}`
-      }
-    });
+	console.log('Fetching user info for:', userId);
 
-    if (!meResponse.ok) {
-      throw new TwitterAPIError(`Failed to fetch user data: ${await meResponse.text()}`);
-    }
+	// If no userId provided, get the authenticated user
+	if (!userId) {
+		const meResponse = await fetch('https://api.twitter.com/2/users/me', {
+			headers: {
+				Authorization: `Bearer ${accessToken}`,
+			},
+		});
 
-    const meData = await meResponse.json() as { data: { id: string } };
-    console.log("Retrieved authenticated user ID:", meData.data.id);
-    return meData.data.id;
-  }
+		if (!meResponse.ok) {
+			throw new TwitterAPIError(`Failed to fetch user data: ${await meResponse.text()}`);
+		}
 
-  // If userId is not a number, treat it as a username
-  if (isNaN(Number(userId))) {
-    const username = userId;
-    const userLookupUrl = `https://api.twitter.com/2/users/by/username/${username}`;
-    console.log("Looking up user by username:", username);
+		const meData = (await meResponse.json()) as { data: { id: string } };
+		console.log('Retrieved authenticated user ID:', meData.data.id);
+		return meData.data.id;
+	}
 
-    const userLookupResponse = await fetch(userLookupUrl, {
-      headers: {
-        'Authorization': `Bearer ${accessToken}`
-      }
-    });
+	// If userId is not a number, treat it as a username
+	if (isNaN(Number(userId))) {
+		const username = userId;
+		const userLookupUrl = `https://api.twitter.com/2/users/by/username/${username}`;
+		console.log('Looking up user by username:', username);
 
-    if (!userLookupResponse.ok) {
-      const errorText = await userLookupResponse.text();
-      console.error("User lookup failed:", errorText);
-      throw new TwitterAPIError(`Failed to lookup user: ${errorText}`);
-    }
+		const userLookupResponse = await fetch(userLookupUrl, {
+			headers: {
+				Authorization: `Bearer ${accessToken}`,
+			},
+		});
 
-    const userLookupData = await userLookupResponse.json() as { data: { id: string } };
-    console.log("Retrieved user ID for username:", userLookupData.data.id);
-    return userLookupData.data.id;
-  }
+		if (!userLookupResponse.ok) {
+			const errorText = await userLookupResponse.text();
+			console.error('User lookup failed:', errorText);
+			throw new TwitterAPIError(`Failed to lookup user: ${errorText}`);
+		}
 
-  // If userId is already a number, use it directly
-  console.log("Using provided numeric user ID:", userId);
-  return userId;
+		const userLookupData = (await userLookupResponse.json()) as { data: { id: string } };
+		console.log('Retrieved user ID for username:', userLookupData.data.id);
+		return userLookupData.data.id;
+	}
+
+	// If userId is already a number, use it directly
+	console.log('Using provided numeric user ID:', userId);
+	return userId;
 }
 
 /**
@@ -388,66 +390,91 @@ async function fetchTwitterUser(userId: string, accessToken: string): Promise<st
  * ------------------------------------------------------------------
  */
 export async function processHandler(request: Request, env: Env): Promise<Response> {
-  console.log('Incoming process request');
+	console.log('Incoming process request');
 
-  // Get CORS headers
-  const corsHeaders = {
-    'Access-Control-Allow-Origin': request.headers.get('Origin') || 'http://localhost:5173',
-    'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
-    'Access-Control-Allow-Headers': 'Content-Type, Authorization, X-Requested-With',
-    'Access-Control-Allow-Credentials': 'true',
-    'Access-Control-Max-Age': '86400',
-  };
+	// Get CORS headers
+	const corsHeaders = {
+		'Access-Control-Allow-Origin': request.headers.get('Origin') || 'http://localhost:5173',
+		'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
+		'Access-Control-Allow-Headers': 'Content-Type, Authorization, X-Requested-With',
+		'Access-Control-Allow-Credentials': 'true',
+		'Access-Control-Max-Age': '86400',
+	};
 
-  const baseHeaders = {
-    'Content-Type': 'application/json',
-    ...corsHeaders
-  };
+	const baseHeaders = {
+		'Content-Type': 'application/json',
+		...corsHeaders,
+	};
 
-  if (request.method !== 'POST') {
-    return new Response('Method Not Allowed', { status: 405, headers: baseHeaders });
-  }
+	if (request.method !== 'POST') {
+		return new Response('Method Not Allowed', { status: 405, headers: baseHeaders });
+	}
 
-  try {
-    // Extract the access token from the Authorization header
-    const authHeader = request.headers.get('Authorization');
-    if (!authHeader || !authHeader.startsWith('Bearer ')) {
-      throw new Error('Missing or invalid authorization header');
-    }
-    const accessToken = authHeader.split(' ')[1];
+	try {
+		// Extract the access token from the Authorization header
+		const authHeader = request.headers.get('Authorization');
+		if (!authHeader || !authHeader.startsWith('Bearer ')) {
+			throw new Error('Missing or invalid authorization header');
+		}
+		const accessToken = authHeader.split(' ')[1];
 
-	console.log("accessToken", accessToken)
+		console.log('accessToken', accessToken);
 
-    const requestBody = await request.json() as { userId: string };
-    const twitterUserId = await fetchTwitterUser(requestBody.userId, accessToken);
-    const tweets = await fetchUserTweets(twitterUserId, accessToken);
-    const result = await getBasedScore(tweets, env);
+		const requestBody = (await request.json()) as { userId: string };
+		const twitterUserId = await fetchTwitterUser(requestBody.userId, accessToken);
+		const tweets = await fetchUserTweets(twitterUserId, accessToken);
 
-    return new Response(JSON.stringify(result), {
-      status: 200,
-      headers: baseHeaders
-    });
-  } catch (err) {
-    console.error('Error in /process handler:', err);
+		// Get the existing based score analysis
+		const basedScoreResult: any = await getBasedScore(tweets, env);
 
-    let errorMessage = 'An unknown error occurred';
-    let statusCode = 500;
+		// Load categories and create classifier
 
-    if (err instanceof TwitterAPIError) {
-      statusCode = 404;
-      errorMessage = err.message;
-    } else if (err instanceof LLMError) {
-      statusCode = 500;
-      errorMessage = err.message;
-    } else if (err instanceof Error) {
-      errorMessage = err.message;
-    }
+		const classifier = new IdeologyClassifier(categoriesData);
+		const classifierResult = await classifier.classifyUser(tweets);
 
-    return new Response(JSON.stringify({ error: errorMessage }), {
-      status: statusCode,
-      headers: baseHeaders
-    });
-  }
+		// Combine the results
+		const combinedResult = {
+			...basedScoreResult,
+			ideology_analysis: {
+				category: classifierResult.category,
+				confidence: classifierResult.confidence,
+				key_indicators: classifierResult.key_indicators,
+				secondary_influences: classifierResult.secondary_influences,
+				language_patterns: classifierResult.language_patterns,
+			},
+			based_score: (basedScoreResult.based_score + classifierResult.based_score) / 2,
+			score_components: {
+				...basedScoreResult.score_components,
+				intellectual_depth: classifierResult.score_components.intellectual_rigor,
+				authenticity: classifierResult.score_components.authenticity,
+			},
+		};
+
+		return new Response(JSON.stringify(combinedResult), {
+			status: 200,
+			headers: baseHeaders,
+		});
+	} catch (err) {
+		console.error('Error in /process handler:', err);
+
+		let errorMessage = 'An unknown error occurred';
+		let statusCode = 500;
+
+		if (err instanceof TwitterAPIError) {
+			statusCode = 404;
+			errorMessage = err.message;
+		} else if (err instanceof LLMError) {
+			statusCode = 500;
+			errorMessage = err.message;
+		} else if (err instanceof Error) {
+			errorMessage = err.message;
+		}
+
+		return new Response(JSON.stringify({ error: errorMessage }), {
+			status: statusCode,
+			headers: baseHeaders,
+		});
+	}
 }
 
 /**
@@ -589,110 +616,101 @@ export default {
 			const url = new URL(request.url);
 			const code = url.searchParams.get('code');
 			const state = url.searchParams.get('state');
-		  
+
 			console.log('Handling oauth callback');
-		  
+
 			// Get CORS headers first
 			const corsHeaders = {
-			  'Access-Control-Allow-Origin': request.headers.get('Origin') || 'http://localhost:5173',
-			  'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
-			  'Access-Control-Allow-Headers': 'Content-Type, Authorization, X-Requested-With',
-			  'Access-Control-Allow-Credentials': 'true',
-			  'Access-Control-Max-Age': '86400',
+				'Access-Control-Allow-Origin': request.headers.get('Origin') || 'http://localhost:5173',
+				'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
+				'Access-Control-Allow-Headers': 'Content-Type, Authorization, X-Requested-With',
+				'Access-Control-Allow-Credentials': 'true',
+				'Access-Control-Max-Age': '86400',
 			};
-		  
+
 			// Common response headers
 			const baseHeaders = {
-			  'Content-Type': 'application/json',
-			  ...corsHeaders
+				'Content-Type': 'application/json',
+				...corsHeaders,
 			};
-		  
+
 			if (!code || !state) {
-			  return new Response(
-				JSON.stringify({ error: 'Missing code or state' }),
-				{
-				  status: 400,
-				  headers: baseHeaders
-				}
-			  );
+				return new Response(JSON.stringify({ error: 'Missing code or state' }), {
+					status: 400,
+					headers: baseHeaders,
+				});
 			}
-		  
+
 			const storedState = await getOAuthState(state);
 			if (!storedState) {
-			  return new Response(
-				JSON.stringify({ error: 'Invalid state or expired' }),
-				{
-				  status: 400,
-				  headers: baseHeaders
-				}
-			  );
+				return new Response(JSON.stringify({ error: 'Invalid state or expired' }), {
+					status: 400,
+					headers: baseHeaders,
+				});
 			}
-		  
+
 			const codeVerifier = storedState.codeVerifier;
 			const clientId = env.TWITTER_CLIENT_ID;
 			const redirectUri = `${env.FRONTEND_URL}/callback`;
-		  
+
 			const params = new URLSearchParams({
-			  code: code,
-			  grant_type: 'authorization_code',
-			  client_id: clientId,
-			  redirect_uri: redirectUri,
-			  code_verifier: codeVerifier,
+				code: code,
+				grant_type: 'authorization_code',
+				client_id: clientId,
+				redirect_uri: redirectUri,
+				code_verifier: codeVerifier,
 			});
-		  
+
 			try {
-			  const response = await fetch('https://api.twitter.com/2/oauth2/token', {
-				method: 'POST',
-				headers: {
-				  'Content-Type': 'application/x-www-form-urlencoded',
-				},
-				body: params.toString(),
-			  });
-		  
-			  if (!response.ok) {
-				const errorText = await response.text();
-				console.error('Error exchanging authorization code:', errorText);
+				const response = await fetch('https://api.twitter.com/2/oauth2/token', {
+					method: 'POST',
+					headers: {
+						'Content-Type': 'application/x-www-form-urlencoded',
+					},
+					body: params.toString(),
+				});
+
+				if (!response.ok) {
+					const errorText = await response.text();
+					console.error('Error exchanging authorization code:', errorText);
+					return new Response(JSON.stringify({ error: `Error exchanging authorization code: ${errorText}` }), {
+						status: response.status,
+						headers: baseHeaders,
+					});
+				}
+
+				const data = (await response.json()) as {
+					access_token: string;
+					refresh_token: string;
+					expires_in: number;
+				};
+
+				await storeAccessToken(data.access_token, data.refresh_token, data.expires_in);
+
 				return new Response(
-				  JSON.stringify({ error: `Error exchanging authorization code: ${errorText}` }),
-				  {
-					status: response.status,
-					headers: baseHeaders
-				  }
+					JSON.stringify({
+						access_token: data.access_token,
+						refresh_token: data.refresh_token,
+						expires_in: data.expires_in,
+					}),
+					{
+						status: 200,
+						headers: baseHeaders,
+					},
 				);
-			  }
-		  
-			  const data = await response.json() as {
-				access_token: string;
-				refresh_token: string;
-				expires_in: number;
-			  };
-		  
-			  await storeAccessToken(data.access_token, data.refresh_token, data.expires_in);
-		  
-			  return new Response(
-				JSON.stringify({
-				  access_token: data.access_token,
-				  refresh_token: data.refresh_token,
-				  expires_in: data.expires_in,
-				}),
-				{
-				  status: 200,
-				  headers: baseHeaders
-				}
-			  );
 			} catch (error) {
-			  console.error('Error in OAuth callback:', error);
-			  return new Response(
-				JSON.stringify({
-				  error: error instanceof Error ? error.message : 'Unknown error in OAuth callback'
-				}),
-				{
-				  status: 500,
-				  headers: baseHeaders
-				}
-			  );
+				console.error('Error in OAuth callback:', error);
+				return new Response(
+					JSON.stringify({
+						error: error instanceof Error ? error.message : 'Unknown error in OAuth callback',
+					}),
+					{
+						status: 500,
+						headers: baseHeaders,
+					},
+				);
 			}
-		  }
+		}
 
 		async function handleOauthRefresh(request: Request, env: Env): Promise<Response> {
 			const refreshToken = await getRefreshToken();
@@ -742,7 +760,7 @@ export default {
 							'Content-Type': 'application/json',
 							...handleCors(request, env).headers,
 						},
-					}
+					},
 				);
 			} catch (error) {
 				console.error('Error in OAuth refresh:', error);
@@ -756,7 +774,7 @@ export default {
 							'Content-Type': 'application/json',
 							...handleCors(request, env).headers,
 						},
-					}
+					},
 				);
 			}
 		}
@@ -812,7 +830,7 @@ export default {
 						'Content-Type': 'application/json',
 						...handleCors(request, env).headers,
 					},
-				}
+				},
 			);
 		}
 	},
