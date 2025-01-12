@@ -19,6 +19,7 @@
   "dependencies": {
     "@grpc/grpc-js": "^1.12.2",
     "@grpc/proto-loader": "^0.7.13",
+    "@instructor-ai/instructor": "^1.5.0",
     "@supabase/supabase-js": "^2.45.4",
     "@types/google-protobuf": "^3.15.12",
     "@types/uuid": "^10.0.0",
