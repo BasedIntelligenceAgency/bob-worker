@@ -1,899 +1,554 @@
 [
-  {
-    "name": "Blue-Hair, Non-Binary SJW Snowflake",
-    "features": {
-      "language_markers": [
-        "literally shaking",
-        "do better",
-        "problematic",
-        "toxic",
-        "normalize",
-        "trigger warning",
-        "content warning",
-        "safe space",
-        "valid",
-        "unpack",
-        "y'all"
-      ],
-      "hashtags": [
-        "#BodiesOfAllSizes",
-        "#Neurodivergent",
-        "#TransRightsAreHumanRights",
-        "#AbolishPolice",
-        "#EatTheRich"
-      ],
-      "beliefs": [
-        "Every identity needs recognition and validation",
-        "Words are violence",
-        "Systems of oppression are everywhere",
-        "Everything is problematic",
-        "Personal trauma defines reality"
-      ],
-      "cultural_signifiers": [
-        "Pronouns in bio (they/them/fae/star)",
-        "Trigger warnings for everything",
-        "Self-diagnosed mental health conditions",
-        "Disability as identity",
-        "Constant callouts and corrections"
-      ],
-      "language_traits": [
-        "Frequent use of 'folx', 'womxn', 'latinx'",
-        "Tone indicators (/srs, /j, /nm)",
-        "Thank you for sharing your truth",
-        "As an ally",
-        "This is not the vibe"
-      ],
-      "enemies": [
-        "Privileged people",
-        "Anyone who doesn't use content warnings",
-        "Biology",
-        "JK Rowling",
-        "Dave Chappelle"
-      ]
-    }
-  },
-  {
-    "name": "Tech Bro Cryptard",
-    "features": {
-      "language_markers": [
-        "HODL",
-        "ngmi",
-        "cope",
-        "ser",
-        "wagmi",
-        "wen moon",
-        "gm",
-        "probably nothing"
-      ],
-      "hashtags": ["#Bitcoin", "#Web3", "#NFT", "#DeFi", "#BullMarket"],
-      "beliefs": [
-        "Crypto will replace all money",
-        "Everyone else is poor and stupid",
-        "Technical analysis is religion",
-        "Traditional finance is dead",
-        "They'll all be billionaires soon"
-      ],
-      "cultural_signifiers": [
-        "Laser eyes profile pic",
-        "Ape/punk NFT avatars",
-        "Chart screenshots",
-        "Wealth flexing",
-        "Tesla ownership"
-      ],
-      "language_traits": [
-        "Have fun staying poor",
-        "Few understand this",
-        "This is financial advice",
-        "Rocket emojis 🚀",
-        "Diamond hands 💎"
-      ],
-      "enemies": [
-        "Nocoiners",
-        "Federal Reserve",
-        "Traditional banks",
-        "SEC",
-        "Anyone who questions crypto"
-      ]
-    }
-  },
-  {
-    "name": "Climate Change Death Cultist",
-    "features": {
-      "language_markers": [
-        "we're all gonna die",
-        "human extinction",
-        "climate collapse",
-        "no future",
-        "carbon death",
-        "climate emergency",
-        "sixth extinction",
-        "climate apocalypse"
-      ],
-      "hashtags": [
-        "#ClimateEmergency",
-        "#ExtinctionRebellion",
-        "#NoFuture",
-        "#CollapseIsComing",
-        "#ClimateGenocide"
-      ],
-      "beliefs": [
-        "Humanity deserves extinction",
-        "Having children is evil",
-        "Collapse is inevitable",
-        "Nature will have revenge",
-        "Death is the answer"
-      ],
-      "cultural_signifiers": [
-        "Sharing disaster news",
-        "Extinction countdown clocks",
-        "Climate disaster porn",
-        "Anti-natalist memes",
-        "Doomsday prepping"
-      ],
-      "language_traits": [
-        "We have X years left",
-        "Humans are the virus",
-        "Nature is healing",
-        "Apocalyptic predictions",
-        "Death celebration"
-      ],
-      "enemies": [
-        "Breeders",
-        "Corporations",
-        "Climate change deniers",
-        "Oil companies",
-        "Optimists"
-      ]
-    }
-  },
-  {
-    "name": "Grindset Culture Douchebro",
-    "features": {
-      "language_markers": [
-        "rise and grind",
-        "no days off",
-        "beta mindset",
-        "sigma grindset",
-        "women ☕",
-        "we go jim",
-        "stay hard",
-        "morning routine"
-      ],
-      "hashtags": [
-        "#RiseAndGrind",
-        "#BillionaireGrindset",
-        "#SigmaMale",
-        "#AlphaRule",
-        "#GymLife"
-      ],
-      "beliefs": [
-        "Sleep is for the weak",
-        "Women are distractions",
-        "Everything is a competition",
-        "Money equals worth",
-        "Suffering builds success"
-      ],
-      "cultural_signifiers": [
-        "Gym selfies",
-        "Sports car photos",
-        "Fake wealth displays",
-        "Gary Vee reposts",
-        "Andrew Tate quotes"
-      ],
-      "language_traits": [
-        "While you were sleeping...",
-        "That's why you're poor",
-        "Beta males be like...",
-        "Wolf/lion metaphors",
-        "Cold shower brags"
-      ],
-      "enemies": [
-        "Lazy people",
-        "9-5 workers",
-        "Weak minded individuals",
-        "Work-life balance advocates",
-        "Beta males"
-      ]
-    }
-  },
-  {
-    "name": "Crystal Healing Hippie Narcissist",
-    "features": {
-      "language_markers": [
-        "negative energy",
-        "vibrations",
-        "mercury retrograde",
-        "chakra alignment",
-        "toxins",
-        "energy healing",
-        "quantum field",
-        "cleansing"
-      ],
-      "hashtags": [
-        "#HigherVibrations",
-        "#Healing",
-        "#RawFood",
-        "#NoVaxx",
-        "#PureBlood"
-      ],
-      "beliefs": [
-        "Crystals fix everything",
-        "Vaccines are poison",
-        "Everything is energy",
-        "Doctors are evil",
-        "Government suppresses healing"
-      ],
-      "cultural_signifiers": [
-        "Crystal collections",
-        "Aura photographs",
-        "Essential oil setups",
-        "Healing crystal grids",
-        "Moon ritual posts"
-      ],
-      "language_traits": [
-        "Do your research",
-        "Natural healing only",
-        "Raise your vibrations",
-        "Trust your body",
-        "Big pharma lies"
-      ],
-      "enemies": [
-        "Modern medicine",
-        "Science",
-        "Big Pharma",
-        "Vaccines",
-        "5G towers"
-      ]
-    }
-  },
-  {
-    "name": "Militant Vegan Extremist",
-    "features": {
-      "language_markers": [
-        "meat is murder",
-        "dairy is rape",
-        "animal holocaust",
-        "human extinction good",
-        "carnist scum",
-        "blood mouth",
-        "animal liberation",
-        "speciesist"
-      ],
-      "hashtags": [
-        "#VeganJihad",
-        "#MeatIsMurder",
-        "#AnimalHolocaust",
-        "#HumansAreScum",
-        "#AnimalLiberation"
-      ],
-      "beliefs": [
-        "Humans deserve extinction",
-        "Animal life > human life",
-        "Pet ownership is slavery",
-        "Meat eaters are murderers",
-        "Violence for animals good"
-      ],
-      "cultural_signifiers": [
-        "Slaughterhouse footage",
-        "Animal rights extremism",
-        "Anti-human posts",
-        "Graphic meat industry pics",
-        "Animal liberation content"
-      ],
-      "language_traits": [
-        "Murder mouth",
-        "Carnist scum",
-        "Animal liberation now",
-        "Human extinction when",
-        "Death to speciesists"
-      ],
-      "enemies": [
-        "Meat eaters",
-        "Farmers",
-        "Pet owners",
-        "Humanity in general",
-        "Anyone not vegan"
-      ]
-    }
-  },
-  {
-    "name": "Tradwife Momfluencer",
-    "features": {
-      "language_markers": [
-        "homemaking is my career",
-        "submissive and fertile",
-        "raw milk gang",
-        "homeschool army",
-        "blessed mama",
-        "traditional values",
-        "biblical womanhood",
-        "domestic arts"
-      ],
-      "hashtags": [
-        "#TradWife",
-        "#HomeMaking",
-        "#RawMilk",
-        "#HomeschoolMama",
-        "#FertilityJourney"
-      ],
-      "beliefs": [
-        "Women belong at home",
-        "Modern women are lost",
-        "Raw milk cures everything",
-        "Public school is poison",
-        "Must breed constantly"
-      ],
-      "cultural_signifiers": [
-        "Bread baking photos",
-        "Long skirt selfies",
-        "Homeschool schedules",
-        "Multiple child photos",
-        "Homestead aesthetics"
-      ],
-      "language_traits": [
-        "Being a woman is a gift",
-        "My husband leads",
-        "Fertility is power",
-        "Modern women cope",
-        "Raw milk gang rise up"
-      ],
-      "enemies": [
-        "Career women",
-        "Feminists",
-        "Public education",
-        "Pasteurized milk",
-        "Birth control"
-      ]
-    }
-  },
-  {
-    "name": "Tinfoil Hat Conspiracist",
-    "features": {
-      "language_markers": [
-        "wake up sheeple",
-        "deep state",
-        "false flag",
-        "they're hiding",
-        "do your research",
-        "connect the dots",
-        "truth seekers",
-        "hidden knowledge"
-      ],
-      "hashtags": [
-        "#TheTruthIsOutThere",
-        "#Illuminati",
-        "#DeepState",
-        "#FalseFlag",
-        "#TheyLive"
-      ],
-      "beliefs": [
-        "Everything is connected",
-        "Lizard people are real",
-        "Flat earth truth",
-        "Chemtrails control minds",
-        "Birds aren't real"
-      ],
-      "cultural_signifiers": [
-        "Conspiracy diagrams",
-        "UFO photos",
-        "Illuminati symbols",
-        "Chemtrail pictures",
-        "Evidence collages"
-      ],
-      "language_traits": [
-        "Connect the dots",
-        "They don't want you to know",
-        "Coincidence? I think not",
-        "Research it yourself",
-        "Wake up!"
-      ],
-      "enemies": [
-        "The government",
-        "Mainstream media",
-        "Scientists",
-        "Sheeple",
-        "Reality itself"
-      ]
-    }
-  },
-  {
-    "name": "Incel Blackpiller",
-    "features": {
-      "language_markers": [
-        "it's over",
-        "chad only",
-        "hypergamy",
-        "sexual marketplace",
-        "genetic death",
-        "looksmaxing",
-        "heightmog",
-        "foids"
-      ],
-      "hashtags": [
-        "#BlackPill",
-        "#ItsOver",
-        "#IncelLife",
-        "#GeneticDeath",
-        "#SexualMarketplace"
-      ],
-      "beliefs": [
-        "Genetics determine everything",
-        "Dating is rigged",
-        "Chad rules world",
-        "Women are evil",
-        "Society hates ugly men"
-      ],
-      "cultural_signifiers": [
-        "Skull measuring",
-        "Chad vs incel memes",
-        "Dating app screenshots",
-        "Genetic studies",
-        "Looksmaxing content"
-      ],
-      "language_traits": [
-        "It's over for...",
-        "Just be Chad",
-        "Female nature",
-        "Sexual marketplace",
-        "Genetic death"
-      ],
-      "enemies": [
-        "Women",
-        "Chad",
-        "Dating apps",
-        "Society",
-        "Their own genetics"
-      ]
-    }
-  },
-  {
-    "name": "Robot-Loving Transhumanist",
-    "features": {
-      "language_markers": [
-        "flesh is weak",
-        "upload consciousness",
-        "silicon ascension",
-        "meat prison",
-        "cybernetic future",
-        "biological limitations",
-        "digital immortality",
-        "neural interface"
-      ],
-      "hashtags": [
-        "#Transhumanism",
-        "#CybergodNow",
-        "#UploadMe",
-        "#SingularityIsComing",
-        "#BeyondHuman"
-      ],
-      "beliefs": [
-        "Human body is obsolete",
-        "AI should replace us",
-        "Consciousness upload now",
-        "Biology is a curse",
-        "Technology is god"
-      ],
-      "cultural_signifiers": [
-        "Cyberpunk aesthetics",
-        "AI worship posts",
-        "Brain upload memes",
-        "Anti-biology rants",
-        "Robot superiority"
-      ],
-      "language_traits": [
-        "Meat prison",
-        "Silicon salvation",
-        "Transcend flesh",
-        "Weak biological form",
-        "Upload when"
-      ],
-      "enemies": [
-        "Bio-conservatives",
-        "Nature advocates",
-        "Luddites",
-        "Human purists",
-        "Biology itself"
-      ]
-    }
-  },
-  {
-    "name": "Molotov-Throwing Anarchist",
-    "features": {
-      "language_markers": [
-        "no gods no masters",
-        "eat the rich",
-        "all cops",
-        "direct action",
-        "burn it down",
-        "smash the state",
-        "property is theft",
-        "mutual aid"
-      ],
-      "hashtags": [
-        "#ACAB",
-        "#SmashTheState",
-        "#DirectAction",
-        "#BurnItDown",
-        "#NoJusticeNoPeace"
-      ],
-      "beliefs": [
-        "Violence is always justified",
-        "Property isn't real",
-        "Everything must burn",
-        "No authority ever",
-        "Chaos is freedom"
-      ],
-      "cultural_signifiers": [
-        "Black bloc aesthetics",
-        "Riot porn",
-        "Molotov tutorials",
-        "Anti-cop memes",
-        "Destruction celebration"
-      ],
-      "language_traits": [
-        "Be ungovernable",
-        "Property is theft",
-        "Direct action gets goods",
-        "Break everything",
-        "Fire cleanses"
-      ],
-      "enemies": [
-        "All authority",
-        "Police",
-        "Government",
-        "Corporations",
-        "Order itself"
-      ]
-    }
-  },
-  {
-    "name": "Rich Elite-Eating Socialist",
-    "features": {
-      "language_markers": [
-        "guillotine time",
-        "parasitic rich",
-        "billionaire blood",
-        "eat bezos",
-        "capitalism death",
-        "class war now",
-        "bourgeoisie",
-        "proletariat rise"
-      ],
-      "hashtags": [
-        "#EatTheRich",
-        "#BillionaireBlood",
-        "#LateStageCapitalism",
-        "#RichHunt",
-        "#ChopChop"
-      ],
-      "beliefs": [
-        "All rich people must die",
-        "Violence against wealthy justified",
-        "Money is evil",
-        "Extreme wealth is violence",
-        "Revenge against rich necessary"
-      ],
-      "cultural_signifiers": [
-        "Guillotine memes",
-        "Wealth inequality graphs",
-        "Billionaire hate posts",
-        "Socialist revenge fantasy",
-        "Eating the rich imagery"
-      ],
-      "language_traits": [
-        "When the revolution comes",
-        "Billionaire hunting season",
-        "Rich blood for the poor",
-        "Time for class war",
-        "Death to capitalism"
-      ],
-      "enemies": [
-        "Billionaires",
-        "Landlords",
-        "CEOs",
-        "Wall Street",
-        "Tech bros"
-      ]
-    }
-  },
-  {
-    "name": "Soviet Larping Tankie",
-    "features": {
-      "language_markers": [
-        "western propaganda",
-        "actually stalin was good",
-        "holodomor fake",
-        "gulags were needed",
-        "critical support",
-        "dialectical materialism",
-        "revisionist",
-        "counter-revolutionary"
-      ],
-      "hashtags": [
-        "#ComradeStolin",
-        "#ActuallyExistingSocialism",
-        "#CriticalSupport",
-        "#WesternLies",
-        "#StalinDidNothingWrong"
-      ],
-      "beliefs": [
-        "Stalin did nothing wrong",
-        "USSR was paradise",
-        "Everything bad is CIA",
-        "Authoritarianism good actually",
-        "West must be destroyed"
-      ],
-      "cultural_signifiers": [
-        "Soviet aesthetic",
-        "Tank pictures",
-        "Communist leader worship",
-        "Red army glorification",
-        "Hammer and sickle everything"
-      ],
-      "language_traits": [
-        "Liberal propaganda",
-        "Actually, if you read Marx...",
-        "Critical support for...",
-        "Historical revisionism",
-        "Anti-western rhetoric"
-      ],
-      "enemies": [
-        "Liberals",
-        "Anarchists",
-        "The West",
-        "Ultra-leftists",
-        "Democracy advocates"
-      ]
-    }
-  },
-  {
-    "name": "Christian Taliban Warrior",
-    "features": {
-      "language_markers": [
-        "deus vult",
-        "holy war now",
-        "spiritual warfare",
-        "god's army",
-        "christian nation",
-        "biblical law",
-        "spiritual battle",
-        "divine justice"
-      ],
-      "hashtags": [
-        "#ChristianNation",
-        "#GodIsKing",
-        "#BibleLaw",
-        "#HolyWar",
-        "#DivinePurpose"
-      ],
-      "beliefs": [
-        "America is God's country",
-        "Violence for Jesus is good",
-        "Democracy is satanic",
-        "Religious law should rule",
-        "Holy war is coming"
-      ],
-      "cultural_signifiers": [
-        "Crusader memes",
-        "Military Jesus art",
-        "Cross/gun combinations",
-        "Biblical warfare quotes",
-        "Apocalyptic imagery"
-      ],
-      "language_traits": [
-        "God wills it",
-        "Time for a crusade",
-        "Biblical threats",
-        "Militant scripture quotes",
-        "End times prophecy"
-      ],
-      "enemies": [
-        "Secular society",
-        "Other religions",
-        "Lukewarm Christians",
-        "Modern churches",
-        "Liberal democracy"
-      ]
-    }
-  },
-  {
-    "name": "Return to Monke Primitivist",
-    "features": {
-      "language_markers": [
-        "industrial society bad",
-        "return to monke",
-        "technology is poison",
-        "reject modernity",
-        "embrace tradition",
-        "ooga booga",
-        "primitive life",
-        "anti-civ"
-      ],
-      "hashtags": [
-        "#RejectModernity",
-        "#MonkeLife",
-        "#AntiTech",
-        "#PrimitiveLife",
-        "#ReturnToNature"
-      ],
-      "beliefs": [
-        "Technology ruined everything",
-        "Must return to primitive life",
-        "Agriculture was a mistake",
-        "Monkey life was peak",
-        "Modern life is prison"
-      ],
-      "cultural_signifiers": [
-        "Monke memes",
-        "Forest survival posts",
-        "Anti-civilization rants",
-        "Hunter-gatherer idealization",
-        "Tool-making content"
-      ],
-      "language_traits": [
-        "Ooga booga",
-        "Agriculture was the fall",
-        "Return to simple life",
-        "Primitive skill brags",
-        "Anti-modern rants"
-      ],
-      "enemies": [
-        "Modern society",
-        "Technology",
-        "Agriculture",
-        "Cities",
-        "Civilization itself"
-      ]
-    }
-  },
-  {
-    "name": "Doomsday Prepper Nutjob",
-    "features": {
-      "language_markers": [
-        "shtf",
-        "bugout",
-        "off grid",
-        "when it happens",
-        "prep now",
-        "survival situation",
-        "grid down",
-        "stockpile essentials"
-      ],
-      "hashtags": [
-        "#PrepperLife",
-        "#SHTF",
-        "#BugOutBag",
-        "#GridDown",
-        "#SurvivalMode"
-      ],
-      "beliefs": [
-        "Collapse imminent",
-        "Everyone else will die",
-        "Bunker is freedom",
-        "Must hoard supplies",
-        "Trust no one"
-      ],
-      "cultural_signifiers": [
-        "Bunker photos",
-        "Food stockpiles",
-        "Weapon caches",
-        "Bug out vehicle pics",
-        "Tactical gear collection"
-      ],
-      "language_traits": [
-        "When society collapses",
-        "Normies will die first",
-        "Stock up now",
-        "Grid down scenario",
-        "You'll all see"
-      ],
-      "enemies": [
-        "Unprepared people",
-        "Government",
-        "Urban dwellers",
-        "Sheep",
-        "Society"
-      ]
-    }
-  },
-  {
-    "name": "E-Girl Discord Mod Simp",
-    "features": {
-      "language_markers": [
-        "m'lady",
-        "donated my savings",
-        "tier 3 sub",
-        "discord kitten",
-        "please notice",
-        "queen deserves",
-        "mod powers",
-        "parasocial bestie"
-      ],
-      "hashtags": [
-        "#TwitchSimp",
-        "#Parasocial",
-        "#GamerGirl",
-        "#StreamQueen",
-        "#ModLife"
-      ],
-      "beliefs": [
-        "E-girls are real friends",
-        "Donations buy love",
-        "Mod power is real power",
-        "Para-social is real social",
-        "All money to queens"
-      ],
-      "cultural_signifiers": [
-        "Donation receipts",
-        "Mod badge screenshots",
-        "Streamer interaction brags",
-        "Simp pride",
-        "Discord admin flexing"
-      ],
-      "language_traits": [
-        "Yes queen",
-        "Thank you for existing",
-        "Donated my paycheck",
-        "Notice me please",
-        "I moderate for free"
-      ],
-      "enemies": [
-        "Other simps",
-        "E-girl critics",
-        "Reality",
-        "Their bank account",
-        "Their dignity"
-      ]
-    }
-  },
-  {
-    "name": "Military Boot Licker",
-    "features": {
-      "language_markers": [
-        "thank you for your service",
-        "sheep dog",
-        "operator",
-        "thin blue line",
-        "back the badge",
-        "tactical",
-        "warrior mindset",
-        "civilian detected"
-      ],
-      "hashtags": [
-        "#BlueLivesMatter",
-        "#SheepDog",
-        "#ThinBlueLine",
-        "#PoliceLife",
-        "#2A"
-      ],
-      "beliefs": [
-        "Police/military can do no wrong",
-        "Everyone else is a civilian",
-        "Violence is always justified",
-        "Tactical gear makes you elite",
-        "Warriors vs sheep mentality"
-      ],
-      "cultural_signifiers": [
-        "Punisher skulls",
-        "Tactical gear reviews",
-        "Operator cosplay photos",
-        "Police brutality defense",
-        "Sheepdog memes"
-      ],
-      "language_traits": [
-        "Stay strapped",
-        "Snowflakes wouldn't understand",
-        "Only real operators know",
-        "Civilian detected",
-        "Better to be judged by 12..."
-      ],
-      "enemies": [
-        "Civilians",
-        "Police critics",
-        "Anti-war activists",
-        "Rights advocates",
-        "Internal affairs"
-      ]
-    }
-  }
+	{
+		"name": "Blue-Hair, Non-Binary SJW Snowflake",
+		"features": {
+			"language_markers": [
+				"literally shaking",
+				"do better",
+				"problematic",
+				"toxic",
+				"normalize",
+				"trigger warning",
+				"content warning",
+				"safe space",
+				"valid",
+				"unpack",
+				"y'all"
+			],
+			"hashtags": ["#BodiesOfAllSizes", "#Neurodivergent", "#TransRightsAreHumanRights", "#AbolishPolice", "#EatTheRich"],
+			"beliefs": [
+				"Every identity needs recognition and validation",
+				"Words are violence",
+				"Systems of oppression are everywhere",
+				"Everything is problematic",
+				"Personal trauma defines reality"
+			],
+			"cultural_signifiers": [
+				"Pronouns in bio (they/them/fae/star)",
+				"Trigger warnings for everything",
+				"Self-diagnosed mental health conditions",
+				"Disability as identity",
+				"Constant callouts and corrections"
+			],
+			"language_traits": [
+				"Frequent use of 'folx', 'womxn', 'latinx'",
+				"Tone indicators (/srs, /j, /nm)",
+				"Thank you for sharing your truth",
+				"As an ally",
+				"This is not the vibe"
+			],
+			"enemies": ["Privileged people", "Anyone who doesn't use content warnings", "Biology", "JK Rowling", "Dave Chappelle"]
+		}
+	},
+	{
+		"name": "Tech Bro Cryptard",
+		"features": {
+			"language_markers": ["HODL", "ngmi", "cope", "ser", "wagmi", "wen moon", "gm", "probably nothing"],
+			"hashtags": ["#Bitcoin", "#Web3", "#NFT", "#DeFi", "#BullMarket"],
+			"beliefs": [
+				"Crypto will replace all money",
+				"Everyone else is poor and stupid",
+				"Technical analysis is religion",
+				"Traditional finance is dead",
+				"They'll all be billionaires soon"
+			],
+			"cultural_signifiers": ["Laser eyes profile pic", "Ape/punk NFT avatars", "Chart screenshots", "Wealth flexing", "Tesla ownership"],
+			"language_traits": [
+				"Have fun staying poor",
+				"Few understand this",
+				"This is financial advice",
+				"Rocket emojis 🚀",
+				"Diamond hands 💎"
+			],
+			"enemies": ["Nocoiners", "Federal Reserve", "Traditional banks", "SEC", "Anyone who questions crypto"]
+		}
+	},
+	{
+		"name": "Climate Change Death Cultist",
+		"features": {
+			"language_markers": [
+				"we're all gonna die",
+				"human extinction",
+				"climate collapse",
+				"no future",
+				"carbon death",
+				"climate emergency",
+				"sixth extinction",
+				"climate apocalypse"
+			],
+			"hashtags": ["#ClimateEmergency", "#ExtinctionRebellion", "#NoFuture", "#CollapseIsComing", "#ClimateGenocide"],
+			"beliefs": [
+				"Humanity deserves extinction",
+				"Having children is evil",
+				"Collapse is inevitable",
+				"Nature will have revenge",
+				"Death is the answer"
+			],
+			"cultural_signifiers": [
+				"Sharing disaster news",
+				"Extinction countdown clocks",
+				"Climate disaster porn",
+				"Anti-natalist memes",
+				"Doomsday prepping"
+			],
+			"language_traits": [
+				"We have X years left",
+				"Humans are the virus",
+				"Nature is healing",
+				"Apocalyptic predictions",
+				"Death celebration"
+			],
+			"enemies": ["Breeders", "Corporations", "Climate change deniers", "Oil companies", "Optimists"]
+		}
+	},
+	{
+		"name": "Grindset Culture Douchebro",
+		"features": {
+			"language_markers": [
+				"rise and grind",
+				"no days off",
+				"beta mindset",
+				"sigma grindset",
+				"women ☕",
+				"we go jim",
+				"stay hard",
+				"morning routine"
+			],
+			"hashtags": ["#RiseAndGrind", "#BillionaireGrindset", "#SigmaMale", "#AlphaRule", "#GymLife"],
+			"beliefs": [
+				"Sleep is for the weak",
+				"Women are distractions",
+				"Everything is a competition",
+				"Money equals worth",
+				"Suffering builds success"
+			],
+			"cultural_signifiers": ["Gym selfies", "Sports car photos", "Fake wealth displays", "Gary Vee reposts", "Andrew Tate quotes"],
+			"language_traits": [
+				"While you were sleeping...",
+				"That's why you're poor",
+				"Beta males be like...",
+				"Wolf/lion metaphors",
+				"Cold shower brags"
+			],
+			"enemies": ["Lazy people", "9-5 workers", "Weak minded individuals", "Work-life balance advocates", "Beta males"]
+		}
+	},
+	{
+		"name": "Crystal Healing Hippie Narcissist",
+		"features": {
+			"language_markers": [
+				"negative energy",
+				"vibrations",
+				"mercury retrograde",
+				"chakra alignment",
+				"toxins",
+				"energy healing",
+				"quantum field",
+				"cleansing"
+			],
+			"hashtags": ["#HigherVibrations", "#Healing", "#RawFood", "#NoVaxx", "#PureBlood"],
+			"beliefs": [
+				"Crystals fix everything",
+				"Vaccines are poison",
+				"Everything is energy",
+				"Doctors are evil",
+				"Government suppresses healing"
+			],
+			"cultural_signifiers": [
+				"Crystal collections",
+				"Aura photographs",
+				"Essential oil setups",
+				"Healing crystal grids",
+				"Moon ritual posts"
+			],
+			"language_traits": ["Do your research", "Natural healing only", "Raise your vibrations", "Trust your body", "Big pharma lies"],
+			"enemies": ["Modern medicine", "Science", "Big Pharma", "Vaccines", "5G towers"]
+		}
+	},
+	{
+		"name": "Militant Vegan Extremist",
+		"features": {
+			"language_markers": [
+				"meat is murder",
+				"dairy is rape",
+				"animal holocaust",
+				"human extinction good",
+				"carnist scum",
+				"blood mouth",
+				"animal liberation",
+				"speciesist"
+			],
+			"hashtags": ["#VeganJihad", "#MeatIsMurder", "#AnimalHolocaust", "#HumansAreScum", "#AnimalLiberation"],
+			"beliefs": [
+				"Humans deserve extinction",
+				"Animal life > human life",
+				"Pet ownership is slavery",
+				"Meat eaters are murderers",
+				"Violence for animals good"
+			],
+			"cultural_signifiers": [
+				"Slaughterhouse footage",
+				"Animal rights extremism",
+				"Anti-human posts",
+				"Graphic meat industry pics",
+				"Animal liberation content"
+			],
+			"language_traits": ["Murder mouth", "Carnist scum", "Animal liberation now", "Human extinction when", "Death to speciesists"],
+			"enemies": ["Meat eaters", "Farmers", "Pet owners", "Humanity in general", "Anyone not vegan"]
+		}
+	},
+	{
+		"name": "Tradwife Momfluencer",
+		"features": {
+			"language_markers": [
+				"homemaking is my career",
+				"submissive and fertile",
+				"raw milk gang",
+				"homeschool army",
+				"blessed mama",
+				"traditional values",
+				"biblical womanhood",
+				"domestic arts"
+			],
+			"hashtags": ["#TradWife", "#HomeMaking", "#RawMilk", "#HomeschoolMama", "#FertilityJourney"],
+			"beliefs": [
+				"Women belong at home",
+				"Modern women are lost",
+				"Raw milk cures everything",
+				"Public school is poison",
+				"Must breed constantly"
+			],
+			"cultural_signifiers": [
+				"Bread baking photos",
+				"Long skirt selfies",
+				"Homeschool schedules",
+				"Multiple child photos",
+				"Homestead aesthetics"
+			],
+			"language_traits": [
+				"Being a woman is a gift",
+				"My husband leads",
+				"Fertility is power",
+				"Modern women cope",
+				"Raw milk gang rise up"
+			],
+			"enemies": ["Career women", "Feminists", "Public education", "Pasteurized milk", "Birth control"]
+		}
+	},
+	{
+		"name": "Tinfoil Hat Conspiracist",
+		"features": {
+			"language_markers": [
+				"wake up sheeple",
+				"deep state",
+				"false flag",
+				"they're hiding",
+				"do your research",
+				"connect the dots",
+				"truth seekers",
+				"hidden knowledge"
+			],
+			"hashtags": ["#TheTruthIsOutThere", "#Illuminati", "#DeepState", "#FalseFlag", "#TheyLive"],
+			"beliefs": ["Everything is connected", "Lizard people are real", "Flat earth truth", "Chemtrails control minds", "Birds aren't real"],
+			"cultural_signifiers": ["Conspiracy diagrams", "UFO photos", "Illuminati symbols", "Chemtrail pictures", "Evidence collages"],
+			"language_traits": [
+				"Connect the dots",
+				"They don't want you to know",
+				"Coincidence? I think not",
+				"Research it yourself",
+				"Wake up!"
+			],
+			"enemies": ["The government", "Mainstream media", "Scientists", "Sheeple", "Reality itself"]
+		}
+	},
+	{
+		"name": "Incel Blackpiller",
+		"features": {
+			"language_markers": [
+				"it's over",
+				"chad only",
+				"hypergamy",
+				"sexual marketplace",
+				"genetic death",
+				"looksmaxing",
+				"heightmog",
+				"foids"
+			],
+			"hashtags": ["#BlackPill", "#ItsOver", "#IncelLife", "#GeneticDeath", "#SexualMarketplace"],
+			"beliefs": ["Genetics determine everything", "Dating is rigged", "Chad rules world", "Women are evil", "Society hates ugly men"],
+			"cultural_signifiers": ["Skull measuring", "Chad vs incel memes", "Dating app screenshots", "Genetic studies", "Looksmaxing content"],
+			"language_traits": ["It's over for...", "Just be Chad", "Female nature", "Sexual marketplace", "Genetic death"],
+			"enemies": ["Women", "Chad", "Dating apps", "Society", "Their own genetics"]
+		}
+	},
+	{
+		"name": "Robot-Loving Transhumanist",
+		"features": {
+			"language_markers": [
+				"flesh is weak",
+				"upload consciousness",
+				"silicon ascension",
+				"meat prison",
+				"cybernetic future",
+				"biological limitations",
+				"digital immortality",
+				"neural interface"
+			],
+			"hashtags": ["#Transhumanism", "#CybergodNow", "#UploadMe", "#SingularityIsComing", "#BeyondHuman"],
+			"beliefs": ["Human body is obsolete", "AI should replace us", "Consciousness upload now", "Biology is a curse", "Technology is god"],
+			"cultural_signifiers": ["Cyberpunk aesthetics", "AI worship posts", "Brain upload memes", "Anti-biology rants", "Robot superiority"],
+			"language_traits": ["Meat prison", "Silicon salvation", "Transcend flesh", "Weak biological form", "Upload when"],
+			"enemies": ["Bio-conservatives", "Nature advocates", "Luddites", "Human purists", "Biology itself"]
+		}
+	},
+	{
+		"name": "Molotov-Throwing Anarchist",
+		"features": {
+			"language_markers": [
+				"no gods no masters",
+				"eat the rich",
+				"all cops",
+				"direct action",
+				"burn it down",
+				"smash the state",
+				"property is theft",
+				"mutual aid"
+			],
+			"hashtags": ["#ACAB", "#SmashTheState", "#DirectAction", "#BurnItDown", "#NoJusticeNoPeace"],
+			"beliefs": ["Violence is always justified", "Property isn't real", "Everything must burn", "No authority ever", "Chaos is freedom"],
+			"cultural_signifiers": ["Black bloc aesthetics", "Riot porn", "Molotov tutorials", "Anti-cop memes", "Destruction celebration"],
+			"language_traits": ["Be ungovernable", "Property is theft", "Direct action gets goods", "Break everything", "Fire cleanses"],
+			"enemies": ["All authority", "Police", "Government", "Corporations", "Order itself"]
+		}
+	},
+	{
+		"name": "Rich Elite-Eating Socialist",
+		"features": {
+			"language_markers": [
+				"guillotine time",
+				"parasitic rich",
+				"billionaire blood",
+				"eat bezos",
+				"capitalism death",
+				"class war now",
+				"bourgeoisie",
+				"proletariat rise"
+			],
+			"hashtags": ["#EatTheRich", "#BillionaireBlood", "#LateStageCapitalism", "#RichHunt", "#ChopChop"],
+			"beliefs": [
+				"All rich people must die",
+				"Violence against wealthy justified",
+				"Money is evil",
+				"Extreme wealth is violence",
+				"Revenge against rich necessary"
+			],
+			"cultural_signifiers": [
+				"Guillotine memes",
+				"Wealth inequality graphs",
+				"Billionaire hate posts",
+				"Socialist revenge fantasy",
+				"Eating the rich imagery"
+			],
+			"language_traits": [
+				"When the revolution comes",
+				"Billionaire hunting season",
+				"Rich blood for the poor",
+				"Time for class war",
+				"Death to capitalism"
+			],
+			"enemies": ["Billionaires", "Landlords", "CEOs", "Wall Street", "Tech bros"]
+		}
+	},
+	{
+		"name": "Soviet Larping Tankie",
+		"features": {
+			"language_markers": [
+				"western propaganda",
+				"actually stalin was good",
+				"holodomor fake",
+				"gulags were needed",
+				"critical support",
+				"dialectical materialism",
+				"revisionist",
+				"counter-revolutionary"
+			],
+			"hashtags": ["#ComradeStolin", "#ActuallyExistingSocialism", "#CriticalSupport", "#WesternLies", "#StalinDidNothingWrong"],
+			"beliefs": [
+				"Stalin did nothing wrong",
+				"USSR was paradise",
+				"Everything bad is CIA",
+				"Authoritarianism good actually",
+				"West must be destroyed"
+			],
+			"cultural_signifiers": [
+				"Soviet aesthetic",
+				"Tank pictures",
+				"Communist leader worship",
+				"Red army glorification",
+				"Hammer and sickle everything"
+			],
+			"language_traits": [
+				"Liberal propaganda",
+				"Actually, if you read Marx...",
+				"Critical support for...",
+				"Historical revisionism",
+				"Anti-western rhetoric"
+			],
+			"enemies": ["Liberals", "Anarchists", "The West", "Ultra-leftists", "Democracy advocates"]
+		}
+	},
+	{
+		"name": "Christian Taliban Warrior",
+		"features": {
+			"language_markers": [
+				"deus vult",
+				"holy war now",
+				"spiritual warfare",
+				"god's army",
+				"christian nation",
+				"biblical law",
+				"spiritual battle",
+				"divine justice"
+			],
+			"hashtags": ["#ChristianNation", "#GodIsKing", "#BibleLaw", "#HolyWar", "#DivinePurpose"],
+			"beliefs": [
+				"America is God's country",
+				"Violence for Jesus is good",
+				"Democracy is satanic",
+				"Religious law should rule",
+				"Holy war is coming"
+			],
+			"cultural_signifiers": [
+				"Crusader memes",
+				"Military Jesus art",
+				"Cross/gun combinations",
+				"Biblical warfare quotes",
+				"Apocalyptic imagery"
+			],
+			"language_traits": ["God wills it", "Time for a crusade", "Biblical threats", "Militant scripture quotes", "End times prophecy"],
+			"enemies": ["Secular society", "Other religions", "Lukewarm Christians", "Modern churches", "Liberal democracy"]
+		}
+	},
+	{
+		"name": "Return to Monke Primitivist",
+		"features": {
+			"language_markers": [
+				"industrial society bad",
+				"return to monke",
+				"technology is poison",
+				"reject modernity",
+				"embrace tradition",
+				"ooga booga",
+				"primitive life",
+				"anti-civ"
+			],
+			"hashtags": ["#RejectModernity", "#MonkeLife", "#AntiTech", "#PrimitiveLife", "#ReturnToNature"],
+			"beliefs": [
+				"Technology ruined everything",
+				"Must return to primitive life",
+				"Agriculture was a mistake",
+				"Monkey life was peak",
+				"Modern life is prison"
+			],
+			"cultural_signifiers": [
+				"Monke memes",
+				"Forest survival posts",
+				"Anti-civilization rants",
+				"Hunter-gatherer idealization",
+				"Tool-making content"
+			],
+			"language_traits": ["Ooga booga", "Agriculture was the fall", "Return to simple life", "Primitive skill brags", "Anti-modern rants"],
+			"enemies": ["Modern society", "Technology", "Agriculture", "Cities", "Civilization itself"]
+		}
+	},
+	{
+		"name": "Doomsday Prepper Nutjob",
+		"features": {
+			"language_markers": [
+				"shtf",
+				"bugout",
+				"off grid",
+				"when it happens",
+				"prep now",
+				"survival situation",
+				"grid down",
+				"stockpile essentials"
+			],
+			"hashtags": ["#PrepperLife", "#SHTF", "#BugOutBag", "#GridDown", "#SurvivalMode"],
+			"beliefs": ["Collapse imminent", "Everyone else will die", "Bunker is freedom", "Must hoard supplies", "Trust no one"],
+			"cultural_signifiers": ["Bunker photos", "Food stockpiles", "Weapon caches", "Bug out vehicle pics", "Tactical gear collection"],
+			"language_traits": ["When society collapses", "Normies will die first", "Stock up now", "Grid down scenario", "You'll all see"],
+			"enemies": ["Unprepared people", "Government", "Urban dwellers", "Sheep", "Society"]
+		}
+	},
+	{
+		"name": "E-Girl Discord Mod Simp",
+		"features": {
+			"language_markers": [
+				"m'lady",
+				"donated my savings",
+				"tier 3 sub",
+				"discord kitten",
+				"please notice",
+				"queen deserves",
+				"mod powers",
+				"parasocial bestie"
+			],
+			"hashtags": ["#TwitchSimp", "#Parasocial", "#GamerGirl", "#StreamQueen", "#ModLife"],
+			"beliefs": [
+				"E-girls are real friends",
+				"Donations buy love",
+				"Mod power is real power",
+				"Para-social is real social",
+				"All money to queens"
+			],
+			"cultural_signifiers": [
+				"Donation receipts",
+				"Mod badge screenshots",
+				"Streamer interaction brags",
+				"Simp pride",
+				"Discord admin flexing"
+			],
+			"language_traits": ["Yes queen", "Thank you for existing", "Donated my paycheck", "Notice me please", "I moderate for free"],
+			"enemies": ["Other simps", "E-girl critics", "Reality", "Their bank account", "Their dignity"]
+		}
+	},
+	{
+		"name": "Military Boot Licker",
+		"features": {
+			"language_markers": [
+				"thank you for your service",
+				"sheep dog",
+				"operator",
+				"thin blue line",
+				"back the badge",
+				"tactical",
+				"warrior mindset",
+				"civilian detected"
+			],
+			"hashtags": ["#BlueLivesMatter", "#SheepDog", "#ThinBlueLine", "#PoliceLife", "#2A"],
+			"beliefs": [
+				"Police/military can do no wrong",
+				"Everyone else is a civilian",
+				"Violence is always justified",
+				"Tactical gear makes you elite",
+				"Warriors vs sheep mentality"
+			],
+			"cultural_signifiers": [
+				"Punisher skulls",
+				"Tactical gear reviews",
+				"Operator cosplay photos",
+				"Police brutality defense",
+				"Sheepdog memes"
+			],
+			"language_traits": [
+				"Stay strapped",
+				"Snowflakes wouldn't understand",
+				"Only real operators know",
+				"Civilian detected",
+				"Better to be judged by 12..."
+			],
+			"enemies": ["Civilians", "Police critics", "Anti-war activists", "Rights advocates", "Internal affairs"]
+		}
+	}
 ]

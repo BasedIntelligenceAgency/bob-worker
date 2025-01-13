@@ -542,7 +542,6 @@ async function fetchTwitterUser(userId: string, accessToken: string, FAKE_API: b
 export async function processHandler(request: Request, env: Env): Promise<Response> {
 	console.log('Incoming process request');
 
-	// Get CORS headers
 	const corsHeaders = {
 		'Access-Control-Allow-Origin': request.headers.get('Origin') || 'http://localhost:5173',
 		'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
@@ -574,11 +573,57 @@ export async function processHandler(request: Request, env: Env): Promise<Respon
 		console.log('env.FAKE_API', env.FAKE_API);
 		const twitterUserId = await fetchTwitterUser(requestBody.userId, accessToken, env.FAKE_API);
 		const tweets = await fetchUserTweets(twitterUserId, accessToken, env.FAKE_API);
-		const result = await getBasedScore(tweets, env, env.FAKE_API);
 
-		console.log('result', result);
+		// Run both analyses in parallel for better performance
+		const [basedScoreResult, ideologyResult] = await Promise.all([
+			getBasedScore(tweets, env, env.FAKE_API),
+			(async () => {
+				try {
+					const classifier = new IdeologyClassifier(categoriesData, {
+						GROK_API_KEY: env.GROK_API_KEY,
+						GROK_BASE_URL: env.GROK_BASE_URL,
+					});
+					return await classifier.classifyUser(tweets);
+				} catch (error) {
+					console.error('Ideology classification failed:', error);
+					return null; // Return null if ideology classification fails
+				}
+			})(),
+		]);
 
-		return new Response(JSON.stringify(result), {
+		// Prepare the combined result
+		const combinedResult: CombinedAnalysis = {
+			...basedScoreResult, // Preserve all existing based score analysis
+		};
+
+		// Only add ideology analysis if it was successful
+		if (ideologyResult) {
+			combinedResult.ideology = {
+				category: ideologyResult.category,
+				confidence: ideologyResult.confidence,
+				key_indicators: ideologyResult.key_indicators,
+				secondary_influences: ideologyResult.secondary_influences,
+				language_patterns: ideologyResult.language_patterns,
+			};
+
+			// Enhance the based score if ideology analysis is available
+			if (ideologyResult.based_score) {
+				combinedResult.based_score = Math.round((combinedResult.based_score + ideologyResult.based_score) / 2);
+			}
+
+			// Add ideology components to score_components if they exist
+			if (combinedResult.score_components && ideologyResult.score_components) {
+				combinedResult.score_components = {
+					...combinedResult.score_components,
+					intellectual_depth: ideologyResult.score_components.intellectual_rigor,
+					authenticity: ideologyResult.score_components.authenticity,
+					contrarian_index: ideologyResult.score_components.contrarian,
+				};
+			}
+		}
+		console.log(combinedResult);
+
+		return new Response(JSON.stringify(combinedResult), {
 			status: 200,
 			headers: baseHeaders,
 		});
