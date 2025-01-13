@@ -208,12 +208,106 @@ async function completeWithRetry<T>(prompt: string, schema: z.ZodSchema<T>, clie
 	}
 }
 
+const TEST_BASED_SCORE = {
+	tribal_affiliation: 'MAGA forever',
+	justification_for_basedness:
+		"User's tweet shows support for Trump, which aligns with the MAGA forever tribe, but also includes a contrarian view on immigration policy.",
+	contrarian_beliefs: [
+		{
+			belief: 'Immigration is good for the economy',
+			justification: 'Promotes growth, diversity, and fills job gaps',
+			confidence: 80,
+			importance: 0.7,
+		},
+		{
+			belief: 'Climate change is a serious issue',
+			justification: 'Science supports it',
+			confidence: 70,
+			importance: 0.6,
+		},
+	],
+	mainstream_beliefs: [
+		{
+			belief: 'Trump was the best president',
+			justification: 'He made America great again',
+			confidence: 90,
+			importance: 0.9,
+		},
+		{
+			belief: 'America First policies are essential',
+			justification: 'Protects national interests',
+			confidence: 85,
+			importance: 0.8,
+		},
+		{
+			belief: 'The media is biased against Trump',
+			justification: 'They always report negatively on him',
+			confidence: 80,
+			importance: 0.7,
+		},
+		{
+			belief: 'Gun rights are fundamental',
+			justification: 'Second Amendment rights are non-negotiable',
+			confidence: 95,
+			importance: 0.9,
+		},
+		{
+			belief: 'Voter fraud is rampant',
+			justification: '2020 election was stolen',
+			confidence: 75,
+			importance: 0.8,
+		},
+		{
+			belief: 'Socialism is a threat to America',
+			justification: 'It undermines freedom and capitalism',
+			confidence: 90,
+			importance: 0.8,
+		},
+		{
+			belief: 'The economy was better under Trump',
+			justification: 'Stock market highs and low unemployment',
+			confidence: 85,
+			importance: 0.7,
+		},
+		{
+			belief: 'The left is trying to destroy America',
+			justification: 'Their policies are anti-American',
+			confidence: 80,
+			importance: 0.7,
+		},
+		{
+			belief: 'Patriotism is under attack',
+			justification: 'Flag burning and kneeling during anthem',
+			confidence: 80,
+			importance: 0.7,
+		},
+	],
+	based_score: 75,
+	sincerity_score: 85,
+	truthfulness_score: 70,
+	conspiracy_score: 60,
+	_meta: {
+		usage: {
+			prompt_tokens: 924,
+			completion_tokens: 1,
+			total_tokens: 925,
+			prompt_tokens_details: [Object],
+		},
+	},
+};
+
 /**
  * ------------------------------------------------------------------
  * Core "Get Based Score" Logic
  * ------------------------------------------------------------------
  */
-async function getBasedScore(twitterMessages: TwitterMessage[], env: Env): Promise<BasedScore> {
+async function getBasedScore(twitterMessages: TwitterMessage[], env: Env, FAKE_API: boolean = true): Promise<BasedScore> {
+	console.log('useTestData', FAKE_API);
+	if (FAKE_API) {
+		console.log('Using test data');
+		return TEST_BASED_SCORE as BasedScore;
+	}
+
 	// Validate input format
 	const messagesValidation = z.array(TwitterMessageSchema).safeParse(twitterMessages);
 	if (!messagesValidation.success) {
@@ -263,6 +357,8 @@ Remember:
 	result.truthfulness_score = validateScore(result.truthfulness_score, 'truthfulness_score');
 	result.conspiracy_score = validateScore(result.conspiracy_score, 'conspiracy_score');
 
+	console.log('result', result);
+
 	return result;
 }
 
@@ -306,7 +402,56 @@ export function handleCors(request: Request, env: Env): Response {
 	return new Response(null, { headers: corsHeaders });
 }
 
-async function fetchUserTweets(userId: string, accessToken: string): Promise<TwitterMessage[]> {
+// First, let's add a test data interface at the top level
+interface TestData {
+	tweets: TwitterMessage[];
+	basedScore: BasedScore;
+}
+
+const TEST_DATA: TestData = {
+	tweets: [
+		{
+			created_at: '2024-01-01T00:00:00.000Z',
+			conversation_id: '123456',
+			id: '123456',
+			text: 'Test tweet #1',
+			edit_history_tweet_ids: ['123456'],
+			author_id: '789',
+		},
+		// Add more test tweets as needed
+	],
+	basedScore: {
+		tribal_affiliation: 'tech bro',
+		justification_for_basedness: 'Shows independent thinking while maintaining core beliefs',
+		contrarian_beliefs: [
+			{
+				belief: 'Test contrarian belief',
+				justification: 'Test justification',
+				confidence: 0.8,
+				importance: 0.7,
+			},
+		],
+		mainstream_beliefs: [
+			{
+				belief: 'Test mainstream belief',
+				justification: 'Test justification',
+				confidence: 0.9,
+				importance: 0.6,
+			},
+		],
+		based_score: 75,
+		sincerity_score: 80,
+		truthfulness_score: 85,
+		conspiracy_score: 20,
+	},
+};
+
+async function fetchUserTweets(userId: string, accessToken: string, FAKE_API: boolean = true): Promise<TwitterMessage[]> {
+	if (FAKE_API) {
+		console.log('Using test tweet data');
+		return TEST_DATA.tweets;
+	}
+
 	const userTimelineUrl = `https://api.twitter.com/2/users/${userId}/tweets?max_results=100&tweet.fields=created_at,author_id,conversation_id,in_reply_to_user_id&exclude=retweets,replies`;
 
 	const twitterResponse = await fetch(userTimelineUrl, {
@@ -336,8 +481,13 @@ async function fetchUserTweets(userId: string, accessToken: string): Promise<Twi
 	}));
 }
 
-async function fetchTwitterUser(userId: string, accessToken: string): Promise<string> {
+async function fetchTwitterUser(userId: string, accessToken: string, FAKE_API: boolean = false): Promise<string> {
 	console.log('Fetching user info for:', userId);
+
+	if (FAKE_API) {
+		console.log('Using test user data');
+		return '123456';
+	}
 
 	// If no userId provided, get the authenticated user
 	if (!userId) {
@@ -421,36 +571,14 @@ export async function processHandler(request: Request, env: Env): Promise<Respon
 		console.log('accessToken', accessToken);
 
 		const requestBody = (await request.json()) as { userId: string };
-		const twitterUserId = await fetchTwitterUser(requestBody.userId, accessToken);
-		const tweets = await fetchUserTweets(twitterUserId, accessToken);
+		console.log('env.FAKE_API', env.FAKE_API);
+		const twitterUserId = await fetchTwitterUser(requestBody.userId, accessToken, env.FAKE_API);
+		const tweets = await fetchUserTweets(twitterUserId, accessToken, env.FAKE_API);
+		const result = await getBasedScore(tweets, env, env.FAKE_API);
 
-		// Get the existing based score analysis
-		const basedScoreResult: any = await getBasedScore(tweets, env);
+		console.log('result', result);
 
-		// Load categories and create classifier
-
-		const classifier = new IdeologyClassifier(categoriesData);
-		const classifierResult = await classifier.classifyUser(tweets);
-
-		// Combine the results
-		const combinedResult = {
-			...basedScoreResult,
-			ideology_analysis: {
-				category: classifierResult.category,
-				confidence: classifierResult.confidence,
-				key_indicators: classifierResult.key_indicators,
-				secondary_influences: classifierResult.secondary_influences,
-				language_patterns: classifierResult.language_patterns,
-			},
-			based_score: (basedScoreResult.based_score + classifierResult.based_score) / 2,
-			score_components: {
-				...basedScoreResult.score_components,
-				intellectual_depth: classifierResult.score_components.intellectual_rigor,
-				authenticity: classifierResult.score_components.authenticity,
-			},
-		};
-
-		return new Response(JSON.stringify(combinedResult), {
+		return new Response(JSON.stringify(result), {
 			status: 200,
 			headers: baseHeaders,
 		});
@@ -487,8 +615,12 @@ export interface Env {
 	SUPABASE_KEY: string;
 	TWITTER_BEARER_TOKEN: string;
 	TWITTER_CLIENT_ID: string;
+	TWITTER_API_KEY: string;
+	TWITTER_API_SECRET: string;
+	TWITTER_ACCESS_TOKEN_SECRET: string;
+	TWITTER_ACCESS_TOKEN: string;
 	FRONTEND_URL: string;
-	FAKE_API: string;
+	FAKE_API: boolean;
 	GROK_API_KEY: string;
 	GROK_BASE_URL: string;
 }
@@ -600,7 +732,7 @@ export default {
 				response_type: 'code',
 				client_id: clientId,
 				redirect_uri: redirectUri,
-				scope: 'tweet.read users.read follows.read offline.access',
+				scope: 'tweet.read users.read tweet.write follows.read offline.access media.write',
 				state: state,
 				code_challenge: codeChallenge,
 				code_challenge_method: 'S256',
@@ -802,6 +934,8 @@ export default {
 				return await handleOauthRefresh(request, env);
 			} else if (path.includes('/process')) {
 				return await processHandler(request, env);
+			} else if (path.includes('/tweet')) {
+				return await handleTweet(request, env);
 			} else if (path === '/') {
 				return new Response('API is operational', {
 					headers: {
@@ -835,3 +969,297 @@ export default {
 		}
 	},
 };
+async function handleTweet(request: Request, env: Env): Promise<Response> {
+	const corsHeaders = {
+		'Access-Control-Allow-Origin': request.headers.get('Origin') || 'http://localhost:5173',
+		'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
+		'Access-Control-Allow-Headers': 'Content-Type, Authorization, X-Requested-With',
+		'Access-Control-Allow-Credentials': 'true',
+	};
+
+	try {
+		// Handle media upload
+		if (request.headers.get('Content-Type')?.includes('multipart/form-data')) {
+			const formData = await request.formData();
+			const mediaFile = formData.get('media') as File;
+
+			if (!mediaFile) {
+				throw new Error('Missing required field: media');
+			}
+
+			console.log('Media file type:', mediaFile.type);
+			console.log('Media file size:', mediaFile.size);
+
+			const mediaBuffer = await mediaFile.arrayBuffer();
+			const mediaBytes = new Uint8Array(mediaBuffer);
+			console.log('Raw bytes length:', mediaBytes.length);
+
+			// Convert to base64
+			const mediaBase64 = btoa(String.fromCharCode(...mediaBytes));
+			console.log('Base64 length:', mediaBase64.length);
+
+			const timestamp = Math.floor((Date.now() - 43200000) / 1000).toString();
+			console.log('Using timestamp:', timestamp);
+
+			const oauthParams = {
+				oauth_consumer_key: env.TWITTER_API_KEY,
+				oauth_nonce: randomBytes(32)
+					.toString('base64')
+					.replace(/[^a-zA-Z0-9]/g, ''),
+				oauth_signature_method: 'HMAC-SHA1',
+				oauth_timestamp: timestamp,
+				oauth_token: env.TWITTER_ACCESS_TOKEN,
+				oauth_version: '1.0',
+			};
+
+			// INIT with raw byte length
+			const initParams = {
+				command: 'INIT',
+				total_bytes: mediaBytes.length.toString(),
+				media_type: 'image/png',
+			};
+
+			console.log('INIT params:', initParams);
+
+			const initSignature = await generateOAuth1Signature(
+				'POST',
+				'https://upload.twitter.com/1.1/media/upload.json',
+				{ ...oauthParams, ...initParams },
+				env.TWITTER_API_SECRET,
+				env.TWITTER_ACCESS_TOKEN_SECRET,
+			);
+
+			const initHeader = generateAuthHeader(oauthParams, initSignature);
+
+			console.log('Making INIT request...');
+			const initBody = new URLSearchParams(initParams);
+			const initResponse = await fetch('https://upload.twitter.com/1.1/media/upload.json', {
+				method: 'POST',
+				headers: {
+					Authorization: initHeader,
+					'Content-Type': 'application/x-www-form-urlencoded',
+				},
+				body: initBody,
+			});
+
+			const initResponseText = await initResponse.text();
+			console.log('INIT response:', initResponseText);
+
+			if (!initResponse.ok) {
+				console.error('INIT failed:', initResponseText);
+				throw new Error(`INIT failed: ${initResponseText}`);
+			}
+
+			const initData = JSON.parse(initResponseText);
+			const mediaId = initData.media_id_string;
+			console.log('Got media ID:', mediaId);
+
+			// APPEND (single segment for smaller files)
+			const appendParams = {
+				command: 'APPEND',
+				media_id: mediaId,
+				segment_index: '0',
+				media_data: mediaBase64,
+			};
+
+			const appendSignature = await generateOAuth1Signature(
+				'POST',
+				'https://upload.twitter.com/1.1/media/upload.json',
+				{ ...oauthParams, ...appendParams },
+				env.TWITTER_API_SECRET,
+				env.TWITTER_ACCESS_TOKEN_SECRET,
+			);
+
+			const appendHeader = generateAuthHeader(oauthParams, appendSignature);
+
+			console.log('Uploading data...');
+			const appendBody = new URLSearchParams(appendParams);
+			const appendResponse = await fetch('https://upload.twitter.com/1.1/media/upload.json', {
+				method: 'POST',
+				headers: {
+					Authorization: appendHeader,
+					'Content-Type': 'application/x-www-form-urlencoded',
+				},
+				body: appendBody,
+			});
+
+			const appendResponseText = await appendResponse.text();
+			console.log('APPEND response:', appendResponseText);
+
+			if (!appendResponse.ok) {
+				console.error('APPEND failed:', appendResponseText);
+				throw new Error(`APPEND failed: ${appendResponseText}`);
+			}
+
+			// FINALIZE
+			const finalizeParams = {
+				command: 'FINALIZE',
+				media_id: mediaId,
+			};
+
+			const finalizeSignature = await generateOAuth1Signature(
+				'POST',
+				'https://upload.twitter.com/1.1/media/upload.json',
+				{ ...oauthParams, ...finalizeParams },
+				env.TWITTER_API_SECRET,
+				env.TWITTER_ACCESS_TOKEN_SECRET,
+			);
+
+			const finalizeHeader = generateAuthHeader(oauthParams, finalizeSignature);
+
+			console.log('Finalizing upload...');
+			const finalizeBody = new URLSearchParams(finalizeParams);
+			const finalizeResponse = await fetch('https://upload.twitter.com/1.1/media/upload.json', {
+				method: 'POST',
+				headers: {
+					Authorization: finalizeHeader,
+					'Content-Type': 'application/x-www-form-urlencoded',
+				},
+				body: finalizeBody,
+			});
+
+			const finalizeResponseText = await finalizeResponse.text();
+			console.log('FINALIZE response:', finalizeResponseText);
+
+			if (!finalizeResponse.ok) {
+				console.error('FINALIZE failed:', finalizeResponseText);
+				throw new Error(`FINALIZE failed: ${finalizeResponseText}`);
+			}
+
+			const finalizeData = JSON.parse(finalizeResponseText);
+			console.log('Upload completed:', finalizeData);
+
+			return new Response(
+				JSON.stringify({
+					success: true,
+					mediaId,
+				}),
+				{
+					headers: {
+						'Content-Type': 'application/json',
+						...corsHeaders,
+					},
+				},
+			);
+		}
+
+		// Handle tweet creation
+		if (request.headers.get('Content-Type')?.includes('application/json')) {
+			const { text, mediaId } = (await request.json()) as { text: string; mediaId: string };
+
+			const timestamp = Math.floor((Date.now() - 43200000) / 1000).toString();
+			const oauthParams = {
+				oauth_consumer_key: env.TWITTER_API_KEY,
+				oauth_nonce: randomBytes(32)
+					.toString('base64')
+					.replace(/[^a-zA-Z0-9]/g, ''),
+				oauth_signature_method: 'HMAC-SHA1',
+				oauth_timestamp: timestamp,
+				oauth_token: env.TWITTER_ACCESS_TOKEN,
+				oauth_version: '1.0',
+			};
+
+			const tweetParams = {
+				text: text,
+				...(mediaId ? { media: { media_ids: [mediaId] } } : {}),
+			};
+
+			const signature = await generateOAuth1Signature(
+				'POST',
+				'https://api.twitter.com/2/tweets',
+				{ ...oauthParams },
+				env.TWITTER_API_SECRET,
+				env.TWITTER_ACCESS_TOKEN_SECRET,
+			);
+
+			const authHeader = generateAuthHeader(oauthParams, signature);
+
+			const tweetResponse = await fetch('https://api.twitter.com/2/tweets', {
+				method: 'POST',
+				headers: {
+					Authorization: authHeader,
+					'Content-Type': 'application/json',
+				},
+				body: JSON.stringify(tweetParams),
+			});
+
+			if (!tweetResponse.ok) {
+				const errorText = await tweetResponse.text();
+				console.error('Tweet creation failed:', errorText);
+				throw new Error(`Failed to create tweet: ${errorText}`);
+			}
+
+			const responseData = await tweetResponse.json();
+			console.log('Tweet posted:', responseData);
+
+			return new Response(
+				JSON.stringify({
+					success: true,
+					tweet: responseData,
+				}),
+				{
+					headers: {
+						'Content-Type': 'application/json',
+						...corsHeaders,
+					},
+				},
+			);
+		}
+
+		throw new Error('Invalid request type');
+	} catch (error) {
+		console.error('Error in tweet handler:', error);
+		return new Response(
+			JSON.stringify({
+				error: error instanceof Error ? error.message : 'Failed to handle tweet request',
+				details: error instanceof Error ? error.stack : undefined,
+			}),
+			{
+				status: 500,
+				headers: { 'Content-Type': 'application/json', ...corsHeaders },
+			},
+		);
+	}
+}
+
+// Helper functions remain the same
+function generateAuthHeader(oauthParams: Record<string, string>, signature: string): string {
+	return (
+		'OAuth ' +
+		Object.entries({
+			...oauthParams,
+			oauth_signature: signature,
+		})
+			.map(([key, value]) => `${encodeURIComponent(key)}="${encodeURIComponent(value)}"`)
+			.join(', ')
+	);
+}
+
+function encodeRFC3986(str: string): string {
+	return encodeURIComponent(str)
+		.replace(/[!'()*]/g, (c) => `%${c.charCodeAt(0).toString(16).toUpperCase()}`)
+		.replace(/\%20/g, '+');
+}
+
+async function generateOAuth1Signature(
+	method: string,
+	url: string,
+	params: Record<string, string>,
+	consumerSecret: string,
+	tokenSecret: string,
+): Promise<string> {
+	const paramString = Object.entries(params)
+		.sort(([a], [b]) => a.localeCompare(b))
+		.map(([key, value]) => `${encodeRFC3986(key)}=${encodeRFC3986(value)}`)
+		.join('&');
+
+	const signatureBase = [method.toUpperCase(), encodeRFC3986(url), encodeRFC3986(paramString)].join('&');
+
+	const signingKey = `${encodeRFC3986(consumerSecret)}&${encodeRFC3986(tokenSecret)}`;
+
+	const signature = await crypto.subtle
+		.importKey('raw', new TextEncoder().encode(signingKey), { name: 'HMAC', hash: 'SHA-1' }, false, ['sign'])
+		.then((key) => crypto.subtle.sign('HMAC', key, new TextEncoder().encode(signatureBase)));
+
+	return btoa(String.fromCharCode(...new Uint8Array(signature)));
+}
