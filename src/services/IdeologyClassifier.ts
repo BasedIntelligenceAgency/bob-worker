@@ -55,8 +55,12 @@ export class IdeologyClassifier {
 		return result;
 	}
 
-	async classifyUser(tweets: { text: string }[]): Promise<ClassificationResult> {
+	async classifyUser(tweets: { text: string }[], fakeApi: boolean): Promise<ClassificationResult> {
 		const tweetTexts = tweets.map((tweet) => tweet.text);
+
+		if (fakeApi) {
+			return this.getFakeApiResponse();
+		}
 
 		const prompt = `
     Task: Analyze these tweets to determine the user's ideological category and calculate various scores.
@@ -175,5 +179,35 @@ export class IdeologyClassifier {
     "contrarian": "Score between 0.1 and 1.0 measuring independence from mainstream"
   }
 }`;
+	}
+
+	private getFakeApiResponse(): ClassificationResult {
+		return {
+			category: 'Tech Bro Cryptard',
+			confidence: 0.6,
+			key_indicators: [
+				"Use of terms like 'building', 'creating', 'side project', 'AI agents', 'GitHub', 'tinkering'",
+				"References to technology and coding ('GitHubCopilot', 'AI voice Government agent', 'OpenAI real-time voice api')",
+				"Expressions of enthusiasm for technology and development ('this is so trueee', 'future is gonna be interesting')",
+				"Mentions of productivity and efficiency ('doing is faster than thinking')",
+			],
+			secondary_influences: [
+				'References to Elon Musk, indicating admiration for tech entrepreneurs',
+				'Interest in open source community and collaboration',
+			],
+			language_patterns: [
+				'Use of tech jargon and buzzwords common in the tech industry',
+				'Frequent use of emojis to express excitement or agreement',
+				"Emphasis on action over contemplation ('building >>> thinking to build')",
+			],
+			conviction: 0.8,
+			based_score: 70,
+			score_components: {
+				conviction: 0.8,
+				authenticity: 0.6,
+				intellectual_rigor: 0.5,
+				contrarian: 0.5,
+			},
+		};
 	}
 }

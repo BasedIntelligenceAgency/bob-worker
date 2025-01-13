@@ -583,13 +583,14 @@ export async function processHandler(request: Request, env: Env): Promise<Respon
 						GROK_API_KEY: env.GROK_API_KEY,
 						GROK_BASE_URL: env.GROK_BASE_URL,
 					});
-					return await classifier.classifyUser(tweets);
+					return await classifier.classifyUser(tweets, env.FAKE_API);
 				} catch (error) {
 					console.error('Ideology classification failed:', error);
 					return null; // Return null if ideology classification fails
 				}
 			})(),
 		]);
+		console.log('ideologyResult', ideologyResult);
 
 		// Prepare the combined result
 		const combinedResult: CombinedAnalysis = {
