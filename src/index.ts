@@ -568,9 +568,8 @@ export async function processHandler(request: Request, env: Env): Promise<Respon
 		console.log('accessToken', accessToken);
 
 		const requestBody = (await request.json()) as { userId: string };
-		console.log("env.FAKE_API", env.FAKE_API)
 
-		const useTestData = env.FAKE_API === null ? false : !env.FAKE_API;
+		const useTestData = !env.FAKE_API || (env.FAKE_API as unknown as string) === 'false' ? false : (env.FAKE_API as unknown as string) === 'true' || env.FAKE_API === true;
 
 		console.log("useTestData", useTestData)
 
