@@ -379,7 +379,7 @@ async function generateCodeChallenge(codeVerifier: string): Promise<string> {
  * ------------------------------------------------------------------
  */
 export function handleCors(request: Request, env: Env): Response {
-	const allowedOrigins = ['localhost:5173', 'basedorbiased.com', 'http://localhost:5173', 'https://basedorbiased.com'];
+	const allowedOrigins = ['localhost:5173', 'basedorbiased.com', 'https://basedorbiased.vercel.app', 'http://localhost:5173', 'https://basedorbiased.com'];
 	const origin = request.headers.get('Origin');
 	const corsHeaders = {
 		'Access-Control-Allow-Origin': allowedOrigins.includes(origin!) ? origin! : allowedOrigins[0],
@@ -760,7 +760,7 @@ export default {
 
 			// Get CORS headers first
 			const corsHeaders = {
-				'Access-Control-Allow-Origin': request.headers.get('Origin') || 'http://localhost:5173',
+				'Access-Control-Allow-Origin': request.headers.get('Origin') || 'https://basedorbiased.vercel.app' || 'http://localhost:5173',
 				'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
 				'Access-Control-Allow-Headers': 'Content-Type, Authorization, X-Requested-With',
 				'Access-Control-Allow-Credentials': 'true',
@@ -979,7 +979,7 @@ export default {
 };
 async function handleTweet(request: Request, env: Env): Promise<Response> {
 	const corsHeaders = {
-	  'Access-Control-Allow-Origin': request.headers.get('Origin') || 'http://localhost:5173',
+	  'Access-Control-Allow-Origin': request.headers.get('Origin') || 'https://basedorbiased.vercel.app' || 'http://localhost:5173',
 	  'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
 	  'Access-Control-Allow-Headers': 'Content-Type, Authorization, X-Requested-With',
 	  'Access-Control-Allow-Credentials': 'true',
