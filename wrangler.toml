@@ -9,3 +9,10 @@ compatibility_flags = ["nodejs_compat"]
 # Configuration: https://developers.cloudflare.com/workers/observability/logs/workers-logs/#enable-workers-logs
 [observability]
 enabled = true
+
+[vars]
+SUPABASE_URL = "https://ypswcnhnviqsfrxzvmqx.supabase.co"
+TWITTER_CLIENT_ID = "SkpzYU1IZE5XY1ZhYzZST194MFE6MTpjaQ"
+FRONTEND_URL = "https://basedorbiased.vercel.app"
+FAKE_API = false
+GROK_BASE_URL = "https://api.x.ai/v1"
