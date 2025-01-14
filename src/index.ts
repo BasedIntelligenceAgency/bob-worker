@@ -298,9 +298,9 @@ const TEST_BASED_SCORE = {
  * Core "Get Based Score" Logic
  * ------------------------------------------------------------------
  */
-async function getBasedScore(twitterMessages: TwitterMessage[], env: Env, FAKE_API: boolean = true): Promise<BasedScore> {
-	console.log('FAKE_API', FAKE_API);
-	if (FAKE_API) {
+async function getBasedScore(twitterMessages: TwitterMessage[], env: Env, useTestData: boolean = false): Promise<BasedScore> {
+	console.log('useTestData', useTestData);
+	if (useTestData) {
 		console.log('Using test data');
 		return TEST_BASED_SCORE as BasedScore;
 	}
@@ -443,8 +443,8 @@ const TEST_DATA: TestData = {
 	},
 };
 
-async function fetchUserTweets(userId: string, accessToken: string, FAKE_API: boolean = true): Promise<TwitterMessage[]> {
-	if (FAKE_API) {
+async function fetchUserTweets(userId: string, accessToken: string, useTestData: boolean = false): Promise<TwitterMessage[]> {
+	if (useTestData) {
 		console.log('Using test tweet data');
 		return TEST_DATA.tweets;
 	}
@@ -478,10 +478,10 @@ async function fetchUserTweets(userId: string, accessToken: string, FAKE_API: bo
 	}));
 }
 
-async function fetchTwitterUser(userId: string, accessToken: string, FAKE_API: boolean = false): Promise<string> {
+async function fetchTwitterUser(userId: string, accessToken: string, useTestData: boolean = false): Promise<string> {
 	console.log('Fetching user info for:', userId);
 
-	if (FAKE_API) {
+	if (useTestData) {
 		console.log('Using test user data');
 		return '123456';
 	}
@@ -569,11 +569,16 @@ export async function processHandler(request: Request, env: Env): Promise<Respon
 
 		const requestBody = (await request.json()) as { userId: string };
 		console.log("env.FAKE_API", env.FAKE_API)
-		const twitterUserId = await fetchTwitterUser(requestBody.userId, accessToken, env.FAKE_API);
+
+		const useTestData = !env.FAKE_API;
+
+		console.log("useTestData", useTestData)
+
+		const twitterUserId = await fetchTwitterUser(requestBody.userId, accessToken, useTestData);
 		console.log("twitterUserId", twitterUserId)
-		const tweets = await fetchUserTweets(twitterUserId, accessToken, env.FAKE_API);
+		const tweets = await fetchUserTweets(twitterUserId, accessToken, useTestData);
 		console.log("tweets", tweets)
-		const result = await getBasedScore(tweets, env, env.FAKE_API);
+		const result = await getBasedScore(tweets, env, useTestData);
 		console.log("result", result)
 
 		return new Response(JSON.stringify(result), {
