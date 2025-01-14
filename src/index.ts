@@ -299,7 +299,7 @@ const TEST_BASED_SCORE = {
  * ------------------------------------------------------------------
  */
 async function getBasedScore(twitterMessages: TwitterMessage[], env: Env, FAKE_API: boolean = true): Promise<BasedScore> {
-	console.log('useTestData', FAKE_API);
+	console.log('FAKE_API', FAKE_API);
 	if (FAKE_API) {
 		console.log('Using test data');
 		return TEST_BASED_SCORE as BasedScore;
@@ -570,10 +570,11 @@ export async function processHandler(request: Request, env: Env): Promise<Respon
 		const requestBody = (await request.json()) as { userId: string };
 		console.log("env.FAKE_API", env.FAKE_API)
 		const twitterUserId = await fetchTwitterUser(requestBody.userId, accessToken, env.FAKE_API);
+		console.log("twitterUserId", twitterUserId)
 		const tweets = await fetchUserTweets(twitterUserId, accessToken, env.FAKE_API);
+		console.log("tweets", tweets)
 		const result = await getBasedScore(tweets, env, env.FAKE_API);
-
-		console.log('result', result);
+		console.log("result", result)
 
 		return new Response(JSON.stringify(result), {
 			status: 200,
