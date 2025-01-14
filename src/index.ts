@@ -727,6 +727,9 @@ export default {
 			const clientId = env.TWITTER_CLIENT_ID;
 			const redirectUri = `${env.FRONTEND_URL}/callback`;
 
+			console.log("clientId", clientId)
+			console.log("redirectUri", redirectUri)
+
 			const state = generateRandomString();
 			const codeVerifier = generateRandomString();
 			const codeChallenge = await generateCodeChallenge(codeVerifier);
@@ -744,6 +747,7 @@ export default {
 			await storeOAuthState(state, codeVerifier);
 
 			const authorizationUrl = `https://twitter.com/i/oauth2/authorize?${params.toString()}`;
+			console.log("authorizationUrl", authorizationUrl)
 			return Response.redirect(authorizationUrl, 302);
 		}
 
@@ -930,6 +934,7 @@ export default {
 		// Route handling
 		try {
 			if (path.includes('/oauth/request_token')) {
+				console.log("requesting token")
 				return await handleOauthRequestToken(request, env);
 			} else if (path.includes('/oauth/callback')) {
 				return await handleOauthCallback(request, env);
